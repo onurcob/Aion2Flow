@@ -813,6 +813,12 @@
         <Setter Property="Opacity" Value="0.85" />
     </Style>
 
+    <Style Selector="controls|NumericBlock.DpsChartScale">
+        <Setter Property="FontSize" Value="{StaticResource AppFontSize.Caption}" />
+        <Setter Property="Opacity" Value="0.6" />
+        <Setter Property="Margin" Value="2,0,0,0" />
+    </Style>
+
     <Style Selector="controls|NumericBlock.CombatantHealingMetric">
         <Setter Property="Foreground" Value="#FF8FE3A8" />
     </Style>

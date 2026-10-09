@@ -35,6 +35,10 @@ public sealed class AppSettings
 
     public bool HighlightLocalPlayerRow { get; set; } = true;
 
+    public bool HideUnnamedCombatants { get; set; } = true;
+
+    public bool ShowDpsChart { get; set; } = true;
+
     public int BackgroundOpacityPercent { get; set => field = Math.Clamp(value, 0, 100); } = 100;
 
     public EncounterTimeDisplayFormat EncounterTimeDisplayFormat

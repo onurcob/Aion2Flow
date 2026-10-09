@@ -42,6 +42,8 @@ public partial class SettingsFlyoutView : UserControl
     private MenuItem? _showHitCountColumnMenuItem;
     private MenuItem? _showHealingColumnMenuItem;
     private MenuItem? _highlightLocalPlayerRowMenuItem;
+    private MenuItem? _hideUnnamedCombatantsMenuItem;
+    private MenuItem? _showDpsChartMenuItem;
     private MenuItem? _skillMonitorMenuItem;
     private MenuItem? _skillMonitorEnableMenuItem;
     private MenuItem? _skillMonitorSettingsMenuItem;
@@ -194,6 +196,8 @@ public partial class SettingsFlyoutView : UserControl
             case nameof(SettingsFlyoutViewModel.ShowHitCountColumnDisplay):
             case nameof(SettingsFlyoutViewModel.ShowHealingColumn):
             case nameof(SettingsFlyoutViewModel.ShowHealingColumnDisplay):
+            case nameof(SettingsFlyoutViewModel.ShowDpsChart):
+            case nameof(SettingsFlyoutViewModel.ShowDpsChartDisplay):
             case nameof(SettingsFlyoutViewModel.MainMetricVisibilityDisplay):
                 RefreshMainMetricVisibilityMenuItems();
                 break;
@@ -231,6 +235,8 @@ public partial class SettingsFlyoutView : UserControl
             case nameof(SettingsFlyoutViewModel.TintPlayerNamesByFactionDisplay):
             case nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRow):
             case nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRowDisplay):
+            case nameof(SettingsFlyoutViewModel.HideUnnamedCombatants):
+            case nameof(SettingsFlyoutViewModel.HideUnnamedCombatantsDisplay):
             case nameof(SettingsFlyoutViewModel.PlayerNameSettingsDisplay):
                 RefreshPlayerNameSettingsMenuItems();
                 break;
@@ -495,6 +501,8 @@ public partial class SettingsFlyoutView : UserControl
         _mainMetricVisibilityMenuItem.Items.Add(_showBackRateColumnMenuItem);
         _mainMetricVisibilityMenuItem.Items.Add(_showHitCountColumnMenuItem);
         _mainMetricVisibilityMenuItem.Items.Add(_showHealingColumnMenuItem);
+        _showDpsChartMenuItem = CreateToggleMenuItem(vm.Localization["Settings_DpsChart"], vm.ShowDpsChartDisplay, vm.ShowDpsChart, ShowDpsChartMenuItemClicked);
+        _mainMetricVisibilityMenuItem.Items.Add(_showDpsChartMenuItem);
     }
 
     private void RefreshMainMetricVisibilityMenuItems()
@@ -513,6 +521,7 @@ public partial class SettingsFlyoutView : UserControl
         RefreshToggleMenuItem(_showBackRateColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_BackRate"], vm.ShowBackRateColumnDisplay, vm.ShowBackRateColumn);
         RefreshToggleMenuItem(_showHitCountColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_HitCount"], vm.ShowHitCountColumnDisplay, vm.ShowHitCountColumn);
         RefreshToggleMenuItem(_showHealingColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_Healing"], vm.ShowHealingColumnDisplay, vm.ShowHealingColumn);
+        RefreshToggleMenuItem(_showDpsChartMenuItem, vm.Localization["Settings_DpsChart"], vm.ShowDpsChartDisplay, vm.ShowDpsChart);
     }
 
     private void RebuildEncounterTimeDisplayFormatMenuItems()
@@ -597,6 +606,8 @@ public partial class SettingsFlyoutView : UserControl
         _playerNameSettingsMenuItem.Items.Add(_tintPlayerNamesByFactionMenuItem);
         _highlightLocalPlayerRowMenuItem = CreateToggleMenuItem(vm.Localization["Settings_HighlightLocalPlayerRow"], vm.HighlightLocalPlayerRowDisplay, vm.HighlightLocalPlayerRow, HighlightLocalPlayerRowMenuItemClicked);
         _playerNameSettingsMenuItem.Items.Add(_highlightLocalPlayerRowMenuItem);
+        _hideUnnamedCombatantsMenuItem = CreateToggleMenuItem(vm.Localization["Settings_HideUnnamedCombatants"], vm.HideUnnamedCombatantsDisplay, vm.HideUnnamedCombatants, HideUnnamedCombatantsMenuItemClicked);
+        _playerNameSettingsMenuItem.Items.Add(_hideUnnamedCombatantsMenuItem);
         RefreshPlayerNameSettingsMenuItems();
     }
 
@@ -716,6 +727,11 @@ public partial class SettingsFlyoutView : UserControl
         if (_highlightLocalPlayerRowMenuItem is not null)
         {
             RefreshToggleMenuItem(_highlightLocalPlayerRowMenuItem, vm.Localization["Settings_HighlightLocalPlayerRow"], vm.HighlightLocalPlayerRowDisplay, vm.HighlightLocalPlayerRow);
+        }
+
+        if (_hideUnnamedCombatantsMenuItem is not null)
+        {
+            RefreshToggleMenuItem(_hideUnnamedCombatantsMenuItem, vm.Localization["Settings_HideUnnamedCombatants"], vm.HideUnnamedCombatantsDisplay, vm.HideUnnamedCombatants);
         }
     }
 
@@ -901,6 +917,26 @@ public partial class SettingsFlyoutView : UserControl
         if (ViewModel is { } vm)
         {
             vm.ShowHealingColumn = !vm.ShowHealingColumn;
+        }
+
+        e.Handled = true;
+    }
+
+    private void HideUnnamedCombatantsMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.HideUnnamedCombatants = !vm.HideUnnamedCombatants;
+        }
+
+        e.Handled = true;
+    }
+
+    private void ShowDpsChartMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.ShowDpsChart = !vm.ShowDpsChart;
         }
 
         e.Handled = true;

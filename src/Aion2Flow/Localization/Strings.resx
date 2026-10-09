@@ -310,4 +310,10 @@
   <data name="Settings_BackgroundOpacity" xml:space="preserve">
     <value>Background</value>
   </data>
+  <data name="Settings_DpsChart" xml:space="preserve">
+    <value>DPS chart</value>
+  </data>
+  <data name="Settings_HideUnnamedCombatants" xml:space="preserve">
+    <value>Hide unnamed rows</value>
+  </data>
 </root>

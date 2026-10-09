@@ -109,6 +109,27 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
         private set => SetFrameProperty(ref field, value);
     }
 
+    private readonly DpsTimelineRecorder _dpsTimeline = new();
+    private int _lastDpsChartSignature;
+
+    public IReadOnlyList<Cloris.Aion2Flow.Controls.DpsChartSeries>? DpsChartLines
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public double DpsChartMaxValue
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public bool IsDpsChartVisible
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
     public Guid NumericStableWidthScopeKey
     {
         get;
@@ -292,7 +313,9 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
                  e.PropertyName == nameof(SettingsFlyoutViewModel.ShowHitCountColumn) ||
                  e.PropertyName == nameof(SettingsFlyoutViewModel.ShowHealingColumn))
             ApplyCombatantMetricDisplaySettings();
-        else if (e.PropertyName == nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRow))
+        else if (e.PropertyName == nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRow) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.HideUnnamedCombatants) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowDpsChart))
             Dispatcher.UIThread.Post(() => RefreshDisplayedSnapshot());
         else if (e.PropertyName == nameof(SettingsFlyoutViewModel.EncounterTimeDisplayFormat))
             _combatantDetails.EncounterTimeDisplayFormat = SettingsFlyout.EncounterTimeDisplayFormat;
@@ -551,6 +574,7 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
         RefreshCombatantBars(snapshot.EncounterId);
         Combatants.Sort(CompareCombatantRows);
         RefreshTotalFilteredDamagePerSecond();
+        RefreshDpsChart(snapshot);
 
         var liveFrame = IsViewingArchivedEncounter ? (SceneReadModelFrame?)null : _latestLiveFrame;
         RefreshBossFocus(liveFrame, snapshot);
@@ -869,6 +893,56 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
             ? row.Damage
             : row.DamagePerSecond;
 
+    private void RefreshDpsChart(SceneCombatSnapshot snapshot)
+    {
+        var encounterId = snapshot.EncounterId;
+        if (!IsViewingArchivedEncounter)
+        {
+            for (var i = 0; i < Combatants.Count; i++)
+            {
+                var row = Combatants[i];
+                _dpsTimeline.Record(encounterId, row.Id, snapshot.EncounterTime, row.Damage);
+            }
+        }
+
+        if (!SettingsFlyout.ShowDpsChart || Combatants.Count == 0 || !_dpsTimeline.HasEncounter(encounterId))
+        {
+            _lastDpsChartSignature = 0;
+            IsDpsChartVisible = false;
+            DpsChartLines = null;
+            return;
+        }
+
+        // Rebuild at most once per encounter second (or when the visible rows change).
+        var rowSignature = 0;
+        for (var i = 0; i < Combatants.Count; i++)
+            rowSignature = HashCode.Combine(rowSignature, Combatants[i].Id, Combatants[i].IsLocalPlayer);
+
+        var signature = HashCode.Combine(encounterId, snapshot.EncounterTime / 1000, rowSignature);
+        if (signature == _lastDpsChartSignature && DpsChartLines is not null)
+            return;
+
+        _lastDpsChartSignature = signature;
+        var series = new List<Cloris.Aion2Flow.Controls.DpsChartSeries>(Combatants.Count);
+        var maxValue = 0d;
+        for (var i = 0; i < Combatants.Count; i++)
+        {
+            var row = Combatants[i];
+            var values = _dpsTimeline.GetDpsSeries(encounterId, row.Id);
+            if (values.Length < 2)
+                continue;
+
+            for (var v = 0; v < values.Length; v++)
+                maxValue = Math.Max(maxValue, values[v]);
+
+            series.Add(new Cloris.Aion2Flow.Controls.DpsChartSeries(row.Id, ResolveCombatantBarBrush(encounterId, row.Id), values, row.IsLocalPlayer));
+        }
+
+        DpsChartLines = series;
+        DpsChartMaxValue = maxValue * 1.1;
+        IsDpsChartVisible = series.Count > 0 && maxValue > 0;
+    }
+
     private void RefreshTotalFilteredDamagePerSecond()
     {
         var total = 0d;
@@ -970,7 +1044,13 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
         var scope = SettingsFlyout.CombatantStatisticsScope;
         if (scope == CombatantStatisticsScope.All)
         {
-            return data.CharacterClass is not null;
+            if (data.CharacterClass is null)
+                return false;
+
+            // Entities with an inferred class but no known nickname (summons whose owner was not
+            // resolved, or players seen before their name packet) show up as bare numeric rows.
+            return !SettingsFlyout.HideUnnamedCombatants ||
+                   (DisplayContext?.TryResolvePcMetadata(combatantId, out var named) == true && named.HasNickname);
         }
 
         if (DisplayContext?.TryResolvePcMetadata(combatantId, out var metadata) != true)

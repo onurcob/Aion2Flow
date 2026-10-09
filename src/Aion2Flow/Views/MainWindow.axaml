@@ -24,7 +24,7 @@
     <Grid x:Name="MainHudShell"
           Classes="MainHudShell"
           Grid.IsSharedSizeScope="True"
-          RowDefinitions="Auto,Auto,Auto,Auto"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
           RowSpacing="0"
           PointerEntered="MainHudShellPointerEntered"
           controls:DisplayContextProvider.DisplayContext="{Binding DisplayContext}">
@@ -97,7 +97,7 @@
 
         <Border x:Name="MainHudContentBackdrop"
                 Grid.Row="1"
-                Grid.RowSpan="3"
+                Grid.RowSpan="4"
                 Classes="MainHudContentBackdrop"
                 IsHitTestVisible="False" />
 
@@ -331,10 +331,31 @@
         </controls:AnimatedItemsView>
 
         <Border Grid.Row="3"
+                Classes="MainHudForeground"
+                IsVisible="{Binding IsDpsChartVisible}"
+                IsHitTestVisible="False"
+                Height="56"
+                Margin="6,4,6,3">
+            <Grid>
+                <controls:DpsChartView Series="{Binding DpsChartLines}"
+                                       MaxValue="{Binding DpsChartMaxValue}" />
+                <controls:NumericBlock Classes="BottomBarMetric DpsChartScale"
+                                       Value="{Binding DpsChartMaxValue}"
+                                       Formatter="N0"
+                                       UseCompactNotation="True"
+                                       CompactThreshold="1000"
+                                       CompactSignificantDigits="2"
+                                       Suffix="/s"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="4"
                 Classes="MainHudFooterSeparator MainHudForeground"
                 IsHitTestVisible="False" />
 
-        <Border Grid.Row="3"
+        <Border Grid.Row="4"
                 Classes="MainHudFooter MainHudForeground">
             <Grid ColumnDefinitions="Auto,*,Auto"
                   ColumnSpacing="6"

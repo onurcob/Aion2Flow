@@ -791,4 +791,10 @@
   <data name="Settings_BackgroundOpacity" xml:space="preserve">
     <value>Arka plan</value>
   </data>
+  <data name="Settings_DpsChart" xml:space="preserve">
+    <value>DPS grafiği</value>
+  </data>
+  <data name="Settings_HideUnnamedCombatants" xml:space="preserve">
+    <value>İsimsiz satırları gizle</value>
+  </data>
 </root>

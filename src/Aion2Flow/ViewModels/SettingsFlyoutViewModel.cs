@@ -58,6 +58,8 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
             ShowHitCountColumn = persisted.ShowHitCountColumn;
             ShowHealingColumn = persisted.ShowHealingColumn;
             HighlightLocalPlayerRow = persisted.HighlightLocalPlayerRow;
+            HideUnnamedCombatants = persisted.HideUnnamedCombatants;
+            ShowDpsChart = persisted.ShowDpsChart;
             BackgroundOpacityPercent = persisted.BackgroundOpacityPercent;
             EncounterTimeDisplayFormat = persisted.EncounterTimeDisplayFormat;
             ShowFocusStatusBar = persisted.ShowFocusStatusBar;
@@ -188,6 +190,14 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
 
     [ObservableProperty]
     public partial int BackgroundOpacityPercent { get; set; } = 100;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HideUnnamedCombatantsDisplay))]
+    public partial bool HideUnnamedCombatants { get; set; } = true;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowDpsChartDisplay))]
+    public partial bool ShowDpsChart { get; set; } = true;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(EncounterTimeDisplayFormatDisplay))]
@@ -323,6 +333,10 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
 
     public string ShowHealingColumnDisplay => ResolveMainMetricVisibilityDisplay(ShowHealingColumn);
 
+    public string HideUnnamedCombatantsDisplay => Localization[HideUnnamedCombatants ? "Settings_HighlightLocalPlayerRow_On" : "Settings_HighlightLocalPlayerRow_Off"];
+
+    public string ShowDpsChartDisplay => ResolveMainMetricVisibilityDisplay(ShowDpsChart);
+
     public string HighlightLocalPlayerRowDisplay => Localization[HighlightLocalPlayerRow ? "Settings_HighlightLocalPlayerRow_On" : "Settings_HighlightLocalPlayerRow_Off"];
 
     public string MainMetricVisibilityDisplay => $"{Convert.ToInt32(ShowDamagePerSecondColumn) + Convert.ToInt32(ShowDamageColumn) + Convert.ToInt32(ShowTotalDamagePerSecond) + Convert.ToInt32(ShowCriticalRateColumn) + Convert.ToInt32(ShowBackRateColumn) + Convert.ToInt32(ShowHitCountColumn) + Convert.ToInt32(ShowHealingColumn)}/7";
@@ -423,6 +437,10 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
     partial void OnShowHealingColumnChanged(bool value) => PersistSettings();
 
     partial void OnHighlightLocalPlayerRowChanged(bool value) => PersistSettings();
+
+    partial void OnHideUnnamedCombatantsChanged(bool value) => PersistSettings();
+
+    partial void OnShowDpsChartChanged(bool value) => PersistSettings();
 
     partial void OnBackgroundOpacityPercentChanged(int value) => PersistSettings();
 
@@ -648,6 +666,8 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
             s.ShowHitCountColumn = ShowHitCountColumn;
             s.ShowHealingColumn = ShowHealingColumn;
             s.HighlightLocalPlayerRow = HighlightLocalPlayerRow;
+            s.HideUnnamedCombatants = HideUnnamedCombatants;
+            s.ShowDpsChart = ShowDpsChart;
             s.BackgroundOpacityPercent = BackgroundOpacityPercent;
             s.EncounterTimeDisplayFormat = EncounterTimeDisplayFormat;
             s.ShowFocusStatusBar = ShowFocusStatusBar;
@@ -689,6 +709,8 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
         OnPropertyChanged(nameof(ShowHitCountColumnDisplay));
         OnPropertyChanged(nameof(ShowHealingColumnDisplay));
         OnPropertyChanged(nameof(HighlightLocalPlayerRowDisplay));
+        OnPropertyChanged(nameof(HideUnnamedCombatantsDisplay));
+        OnPropertyChanged(nameof(ShowDpsChartDisplay));
         OnPropertyChanged(nameof(MainMetricVisibilityDisplay));
         OnPropertyChanged(nameof(EncounterTimeDisplayFormatDisplay));
         OnPropertyChanged(nameof(ShowFocusStatusBarDisplay));
