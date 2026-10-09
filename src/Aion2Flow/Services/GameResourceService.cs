@@ -309,7 +309,9 @@ public sealed class GameResourceService : IDisposable
 
     private void Reload(string language)
     {
-        var catalog = ResourceCatalog.Load(language);
+        // Game data packs exist only for en-US/ko-KR/zh-TW; UI-only languages (e.g. tr-TR) fall back to English game data.
+        var resourceLanguage = ResourceLanguage.IsSupported(language) ? language : ResourceLanguage.English;
+        var catalog = ResourceCatalog.Load(resourceLanguage);
         var playerProfessionBaseSkillIds = catalog.Skills
             .Where(PlayerProfessionSkillFilter.Includes)
             .Select(skill => ResolveBaseSkillIdForCode(catalog, skill.SkillId))

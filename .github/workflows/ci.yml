@@ -43,3 +43,11 @@ jobs:
 
       - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o "$env:RUNNER_TEMP\publish"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Aion2Flow-custom
+          path: ${{ runner.temp }}/publish
+          if-no-files-found: error
+          retention-days: 30

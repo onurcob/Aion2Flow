@@ -52,6 +52,16 @@ public readonly record struct SceneCombatantMetrics
     public int ShieldAbsorbedTimes { get; init; }
 
     public double DamageContribution { get; init; }
+
+    public int HitCount { get; init; }
+
+    public int CriticalHitCount { get; init; }
+
+    public int BackHitCount { get; init; }
+
+    public double CriticalRate => HitCount > 0 ? (double)CriticalHitCount / HitCount : 0d;
+
+    public double BackRate => HitCount > 0 ? (double)BackHitCount / HitCount : 0d;
 }
 
 internal struct SceneCombatantMetricsAccumulator
@@ -71,6 +81,16 @@ internal struct SceneCombatantMetricsAccumulator
     public long ShieldAbsorbedAmount;
     public int ShieldAbsorbedTimes;
     public double DamageContribution;
+    public int HitCount;
+    public int CriticalHitCount;
+    public int BackHitCount;
+
+    public void ApplyMechanicTotals(int hitCount, int criticalHitCount, int backHitCount)
+    {
+        HitCount += hitCount;
+        CriticalHitCount += criticalHitCount;
+        BackHitCount += backHitCount;
+    }
 
     public void Reset()
     {
@@ -93,6 +113,11 @@ internal struct SceneCombatantMetricsAccumulator
 
     public readonly SceneCombatantMetrics ToSnapshot()
     {
-        return new SceneCombatantMetrics(CharacterClass, IsVisiblePlayerCombatant, DamagePerSecond, HealingPerSecond, DamageAmount, HealingAmount, PeriodicHealingAmount, DrainDamageAmount, DrainHealingAmount, RegenerationHealingAmount, ShieldAmount, ShieldTimes, ShieldAbsorbedAmount, ShieldAbsorbedTimes, DamageContribution);
+        return new SceneCombatantMetrics(CharacterClass, IsVisiblePlayerCombatant, DamagePerSecond, HealingPerSecond, DamageAmount, HealingAmount, PeriodicHealingAmount, DrainDamageAmount, DrainHealingAmount, RegenerationHealingAmount, ShieldAmount, ShieldTimes, ShieldAbsorbedAmount, ShieldAbsorbedTimes, DamageContribution)
+        {
+            HitCount = HitCount,
+            CriticalHitCount = CriticalHitCount,
+            BackHitCount = BackHitCount,
+        };
     }
 }

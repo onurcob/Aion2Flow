@@ -40,6 +40,37 @@ public sealed class CombatantRowViewModel(UiFrameBatchService frameBatchService,
         set => SetFrameProperty(ref field, value);
     } = healing;
 
+    public double CriticalRate
+    {
+        get;
+        set => SetFrameProperty(ref field, value);
+    }
+
+    public double BackRate
+    {
+        get;
+        set => SetFrameProperty(ref field, value);
+    }
+
+    public double HitCount
+    {
+        get;
+        set => SetFrameProperty(ref field, value);
+    }
+
+    public bool IsLocalPlayer
+    {
+        get;
+        set => SetFrameProperty(ref field, value);
+    }
+
+    public void ApplyExtendedMetrics(in Cloris.Aion2Flow.SceneRuntime.Combat.SceneCombatantMetrics metrics)
+    {
+        CriticalRate = metrics.CriticalRate;
+        BackRate = metrics.BackRate;
+        HitCount = metrics.HitCount;
+    }
+
     public ProgressSegment? BarSegment
     {
         get;

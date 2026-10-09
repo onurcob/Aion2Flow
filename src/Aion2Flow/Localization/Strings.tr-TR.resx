@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- Action -->
+    <data name="Action_BattleReset" xml:space="preserve">
+    <value>Dövüşü sıfırla</value>
+  </data>
+  <data name="Action_Live" xml:space="preserve">
+    <value>Canlı</value>
+  </data>
+  <data name="Action_SelectAll" xml:space="preserve">
+    <value>Tümünü seç</value>
+  </data>
+  <data name="Action_Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="Settings_Topmost" xml:space="preserve">
+    <value>Her zaman üstte</value>
+  </data>
+  <data name="Settings_Topmost_GameForeground" xml:space="preserve">
+    <value>Oyun aktifken</value>
+  </data>
+  <data name="Settings_Topmost_Always" xml:space="preserve">
+    <value>Her zaman</value>
+  </data>
+  <data name="Settings_Topmost_Never" xml:space="preserve">
+    <value>Asla</value>
+  </data>
+  <data name="Settings_SceneKind" xml:space="preserve">
+    <value>Sahne modu</value>
+  </data>
+  <data name="Settings_SceneKind_Standard" xml:space="preserve">
+    <value>Standart</value>
+  </data>
+  <data name="Settings_SceneKind_Boss" xml:space="preserve">
+    <value>Sadece boss dövüşleri</value>
+  </data>
+  <data name="Settings_MainMetricVisibility" xml:space="preserve">
+    <value>Ana pencere değerleri</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_DamagePerSecond" xml:space="preserve">
+    <value>DPS sütunu</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Damage" xml:space="preserve">
+    <value>Toplam hasar sütunu</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_TotalDamagePerSecond" xml:space="preserve">
+    <value>Alttaki toplam DPS</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Hide" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="Settings_TimeDisplayFormat" xml:space="preserve">
+    <value>Süre formatı</value>
+  </data>
+  <data name="Settings_TimeDisplayFormat_DecimalSeconds" xml:space="preserve">
+    <value>68.3s</value>
+  </data>
+  <data name="Settings_TimeDisplayFormat_MinutesSeconds" xml:space="preserve">
+    <value>01:08</value>
+  </data>
+  <data name="Settings_MainMetricsCompact" xml:space="preserve">
+    <value>Kısa sayılar</value>
+  </data>
+  <data name="Settings_MainMetricsCompact_On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Settings_MainMetricsCompact_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_FocusStatusBar" xml:space="preserve">
+    <value>Hedef durum çubuğu</value>
+  </data>
+  <data name="Settings_FocusStatusBar_On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Settings_FocusStatusBar_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_ClickThroughTitleBar" xml:space="preserve">
+    <value>Tıklama geçirgen başlık</value>
+  </data>
+  <data name="Settings_HideHeaderWhenClickThrough_On" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="Settings_HideHeaderWhenClickThrough_Off" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Settings_ShowPlayerNames" xml:space="preserve">
+    <value>İsimler</value>
+  </data>
+  <data name="Settings_ShowPlayerNames_On" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Settings_ShowPlayerNames_Off" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="Settings_PlayerNameSettings" xml:space="preserve">
+    <value>Oyuncu isimleri</value>
+  </data>
+  <data name="Settings_PlayerSelfMarker" xml:space="preserve">
+    <value>Kendi işaretim</value>
+  </data>
+  <data name="Settings_PlayerSelfMarker_Hidden" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_PlayerSelfMarker_WhenNamesHidden" xml:space="preserve">
+    <value>İsimler gizliyken</value>
+  </data>
+  <data name="Settings_PlayerSelfMarker_Always" xml:space="preserve">
+    <value>Her zaman</value>
+  </data>
+  <data name="Settings_PlayerShortServerName" xml:space="preserve">
+    <value>Sunucu adı</value>
+  </data>
+  <data name="Settings_PlayerShortServerName_On" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Settings_PlayerShortServerName_Off" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="Settings_PlayerLegionName" xml:space="preserve">
+    <value>Lejyon adı</value>
+  </data>
+  <data name="Settings_PlayerLegionName_On" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Settings_PlayerLegionName_Off" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="Settings_PlayerFactionTint" xml:space="preserve">
+    <value>Fraksiyon rengi</value>
+  </data>
+  <data name="Settings_PlayerFactionTint_On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Settings_PlayerFactionTint_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_SkillMonitor" xml:space="preserve">
+    <value>Skill monitörü</value>
+  </data>
+  <data name="Settings_SkillMonitor_Enable" xml:space="preserve">
+    <value>Etkinleştir</value>
+  </data>
+  <data name="Settings_SkillMonitor_Configure" xml:space="preserve">
+    <value>Skill monitörü ayarları</value>
+  </data>
+  <data name="Settings_SkillMonitor_On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Settings_SkillMonitor_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_SkillMonitor_SelectAll" xml:space="preserve">
+    <value>Tümünü seç</value>
+  </data>
+  <data name="Settings_SkillMonitor_ClearAll" xml:space="preserve">
+    <value>Tümünü temizle</value>
+  </data>
+  <data name="Settings_SkillMonitor_BuffDisplay" xml:space="preserve">
+    <value>Buff süresi</value>
+  </data>
+  <data name="Settings_SkillMonitor_CooldownDisplay" xml:space="preserve">
+    <value>Bekleme süresi</value>
+  </data>
+  <data name="Settings_SkillMonitor_BuffColumn" xml:space="preserve">
+    <value>Buff</value>
+  </data>
+  <data name="Settings_SkillMonitor_CooldownColumn" xml:space="preserve">
+    <value>Bekleme</value>
+  </data>
+  <data name="Settings_SkillMonitor_BuffSelectedFormat" xml:space="preserve">
+    <value>Buff {0}/{1}</value>
+  </data>
+  <data name="Settings_SkillMonitor_CooldownSelectedFormat" xml:space="preserve">
+    <value>Bekleme {0}/{1}</value>
+  </data>
+  <data name="Settings_SkillMonitor_Scale" xml:space="preserve">
+    <value>Monitör ölçeği</value>
+  </data>
+  <data name="Settings_VisibleRows" xml:space="preserve">
+    <value>Görünen satır</value>
+  </data>
+  <data name="Settings_CombatantStatisticsScope" xml:space="preserve">
+    <value>Kimler görünsün</value>
+  </data>
+  <data name="Settings_CombatantStatisticsScope_Self" xml:space="preserve">
+    <value>Sadece ben</value>
+  </data>
+  <data name="Settings_CombatantStatisticsScope_Party" xml:space="preserve">
+    <value>Parti</value>
+  </data>
+  <data name="Settings_CombatantStatisticsScope_Force" xml:space="preserve">
+    <value>Force</value>
+  </data>
+  <data name="Settings_CombatantStatisticsScope_All" xml:space="preserve">
+    <value>Herkes</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="Settings_UiScale" xml:space="preserve">
+    <value>Arayüz ölçeği</value>
+  </data>
+  <data name="Settings_Hotkey_BattleReset" xml:space="preserve">
+    <value>Dövüş sıfırlama kısayolu</value>
+  </data>
+  <data name="Settings_DisplayModeHotkey" xml:space="preserve">
+    <value>Görünüm modu kısayolu</value>
+  </data>
+  <data name="Settings_Hotkey_None" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="Settings_Hotkey_PressKeys" xml:space="preserve">
+    <value>Tuşlara bas…</value>
+  </data>
+  <data name="Settings_Hotkey_RegistrationUnavailable" xml:space="preserve">
+    <value>Kısayol kullanılamıyor. Başka bir tuş kombinasyonu seç.</value>
+  </data>
+  <data name="Settings_Hotkey_Clear" xml:space="preserve">
+    <value>Kısayolu temizle</value>
+  </data>
+  <data name="Overlay_Action_EnableClickThrough" xml:space="preserve">
+    <value>Tıklama geçirgenliğini aç</value>
+  </data>
+  <data name="Overlay_Action_Hide" xml:space="preserve">
+    <value>Overlay'i gizle</value>
+  </data>
+  <data name="Overlay_Action_Restore" xml:space="preserve">
+    <value>Overlay'i geri getir</value>
+  </data>
+  <data name="SkillMonitor_Title" xml:space="preserve">
+    <value>Skill monitörü</value>
+  </data>
+  <data name="SkillMonitor_Buffs" xml:space="preserve">
+    <value>Bufflar</value>
+  </data>
+  <data name="SkillMonitor_Cooldowns" xml:space="preserve">
+    <value>Beklemeler</value>
+  </data>
+  <data name="SkillMonitor_Indefinite" xml:space="preserve">
+    <value>∞</value>
+  </data>
+  <data name="SkillMonitor_UnknownSkill" xml:space="preserve">
+    <value>Bilinmeyen skill</value>
+  </data>
+  <data name="Settings_Update_Check" xml:space="preserve">
+    <value>Güncellemeleri kontrol et</value>
+  </data>
+  <data name="Settings_Update_Restart" xml:space="preserve">
+    <value>Güncellemek için yeniden başlat</value>
+  </data>
+  <data name="Settings_Update_Checking" xml:space="preserve">
+    <value>Güncellemeler kontrol ediliyor…</value>
+  </data>
+  <data name="Settings_Update_DownloadingFormat" xml:space="preserve">
+    <value>İndiriliyor… %{0}</value>
+  </data>
+  <data name="Settings_Update_UpToDate" xml:space="preserve">
+    <value>Güncel</value>
+  </data>
+  <data name="Settings_Update_ReadyFormat" xml:space="preserve">
+    <value>{0} güncellemesi hazır — uygulamak için yeniden başlat</value>
+  </data>
+  <data name="Settings_Update_Failed" xml:space="preserve">
+    <value>Güncelleme başarısız</value>
+  </data>
+  <data name="Settings_Update_CurrentVersionFormat" xml:space="preserve">
+    <value>v{0}</value>
+  </data>
+  <data name="Status_Ready" xml:space="preserve">
+    <value>Hazır</value>
+  </data>
+  <data name="Status_DriverReady" xml:space="preserve">
+    <value>WinDivert etkin</value>
+  </data>
+  <data name="Status_DriverIdle" xml:space="preserve">
+    <value>WinDivert etkin değil</value>
+  </data>
+  <data name="Status_PortReady" xml:space="preserve">
+    <value>Oyun portları bulundu</value>
+  </data>
+  <data name="Status_PortWaiting" xml:space="preserve">
+    <value>Oyun portları bekleniyor</value>
+  </data>
+  <data name="Status_PortIdle" xml:space="preserve">
+    <value>Oyun portları izlenmiyor</value>
+  </data>
+  <data name="Status_Locked" xml:space="preserve">
+    <value>Savaş bağlantısı kilitlendi</value>
+  </data>
+  <data name="Status_Unlocked" xml:space="preserve">
+    <value>Savaş bağlantısı kilitlenmedi</value>
+  </data>
+  <data name="Status_LatencyMeasured" xml:space="preserve">
+    <value>Oyun gidiş-dönüş gecikmesi</value>
+  </data>
+  <data name="Status_LatencyUnavailable" xml:space="preserve">
+    <value>Henüz gecikme ölçümü yok</value>
+  </data>
+  <data name="Direction_Outgoing" xml:space="preserve">
+    <value>Verilen</value>
+  </data>
+  <data name="Direction_Incoming" xml:space="preserve">
+    <value>Alınan</value>
+  </data>
+  <data name="Direction_Targets" xml:space="preserve">
+    <value>Hedefler</value>
+  </data>
+  <data name="Direction_Sources" xml:space="preserve">
+    <value>Kaynaklar</value>
+  </data>
+  <data name="Category_Damage" xml:space="preserve">
+    <value>Hasar</value>
+  </data>
+  <data name="Category_Healing" xml:space="preserve">
+    <value>İyileştirme</value>
+  </data>
+  <data name="Category_Shield" xml:space="preserve">
+    <value>Koruyucu kalkan</value>
+  </data>
+  <data name="Empty_History" xml:space="preserve">
+    <value>Kayıtlı dövüş yok</value>
+  </data>
+  <data name="Empty_Combatants" xml:space="preserve">
+    <value>Henüz dövüş verisi yok</value>
+  </data>
+  <data name="Empty_Skills" xml:space="preserve">
+    <value>Skill verisi yok</value>
+  </data>
+  <data name="Skill_UnknownEffect" xml:space="preserve">
+    <value>Bilinmeyen efekt</value>
+  </data>
+  <data name="PlayerName_AnonymousPlayer" xml:space="preserve">
+    <value>Oyuncu</value>
+  </data>
+  <data name="CharacterClass_Gladiator" xml:space="preserve">
+    <value>Gladiator</value>
+  </data>
+  <data name="CharacterClass_Templar" xml:space="preserve">
+    <value>Templar</value>
+  </data>
+  <data name="CharacterClass_Assassin" xml:space="preserve">
+    <value>Assassin</value>
+  </data>
+  <data name="CharacterClass_Ranger" xml:space="preserve">
+    <value>Ranger</value>
+  </data>
+  <data name="CharacterClass_Sorcerer" xml:space="preserve">
+    <value>Sorcerer</value>
+  </data>
+  <data name="CharacterClass_Elementalist" xml:space="preserve">
+    <value>Elementalist</value>
+  </data>
+  <data name="CharacterClass_Cleric" xml:space="preserve">
+    <value>Cleric</value>
+  </data>
+  <data name="CharacterClass_Chanter" xml:space="preserve">
+    <value>Chanter</value>
+  </data>
+  <data name="CharacterClass_Brawler" xml:space="preserve">
+    <value>Brawler</value>
+  </data>
+  <data name="Metric_Total" xml:space="preserve">
+    <value>Toplam</value>
+  </data>
+  <data name="Metric_Dps" xml:space="preserve">
+    <value>DPS</value>
+  </data>
+  <data name="Metric_Hps" xml:space="preserve">
+    <value>HPS</value>
+  </data>
+  <data name="Metric_Duration" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="Metric_TotalHealing" xml:space="preserve">
+    <value>Toplam iyileştirme</value>
+  </data>
+  <data name="Metric_DirectHealing" xml:space="preserve">
+    <value>Doğrudan iyileştirme</value>
+  </data>
+  <data name="Metric_Attacks" xml:space="preserve">
+    <value>Saldırı</value>
+  </data>
+  <data name="Metric_HitCount" xml:space="preserve">
+    <value>Vuruş sayısı</value>
+  </data>
+  <data name="Metric_Skills" xml:space="preserve">
+    <value>Skilller</value>
+  </data>
+  <data name="Metric_HealingSkills" xml:space="preserve">
+    <value>İyileştirme skilleri</value>
+  </data>
+  <data name="Metric_ShieldSkills" xml:space="preserve">
+    <value>Kalkan skilleri</value>
+  </data>
+  <data name="Metric_HealingHits" xml:space="preserve">
+    <value>İyileştirme sayısı</value>
+  </data>
+  <data name="Metric_ShieldHits" xml:space="preserve">
+    <value>Kalkan sayısı</value>
+  </data>
+  <data name="MetricShort_Damage" xml:space="preserve">
+    <value>Hasar</value>
+  </data>
+  <data name="MetricShort_Heal" xml:space="preserve">
+    <value>İyil.</value>
+  </data>
+  <data name="MetricShort_Hot" xml:space="preserve">
+    <value>HoT</value>
+  </data>
+  <data name="MetricShort_DrainHeal" xml:space="preserve">
+    <value>Emme iyil.</value>
+  </data>
+  <data name="MetricShort_ShieldAbsorbed" xml:space="preserve">
+    <value>Kalkan emdi</value>
+  </data>
+  <data name="MetricShort_PeriodicDamage" xml:space="preserve">
+    <value>Periyodik hasar</value>
+  </data>
+  <data name="MetricShort_PeriodicHits" xml:space="preserve">
+    <value>Periyodik vuruş</value>
+  </data>
+  <data name="Stat_Critical" xml:space="preserve">
+    <value>Kritik</value>
+  </data>
+  <data name="Stat_Perfect" xml:space="preserve">
+    <value>Mükemmel</value>
+  </data>
+  <data name="Stat_Smite" xml:space="preserve">
+    <value>Smite</value>
+  </data>
+  <data name="Stat_MultiHit" xml:space="preserve">
+    <value>Çoklu vuruş</value>
+  </data>
+  <data name="Stat_Front" xml:space="preserve">
+    <value>Önden saldırı</value>
+  </data>
+  <data name="Stat_Parry" xml:space="preserve">
+    <value>Silah savuşturma</value>
+  </data>
+  <data name="Stat_PerfectParry" xml:space="preserve">
+    <value>Mükemmel savuşturma</value>
+  </data>
+  <data name="Stat_Endurance" xml:space="preserve">
+    <value>Dayanıklılık</value>
+  </data>
+  <data name="Stat_Regeneration" xml:space="preserve">
+    <value>Yenilenme</value>
+  </data>
+  <data name="Stat_Back" xml:space="preserve">
+    <value>Arkadan saldırı</value>
+  </data>
+  <data name="Stat_Block" xml:space="preserve">
+    <value>Kalkan bloğu</value>
+  </data>
+  <data name="Stat_PerfectBlock" xml:space="preserve">
+    <value>Mükemmel blok</value>
+  </data>
+  <data name="Stat_Evade" xml:space="preserve">
+    <value>Kaçınma</value>
+  </data>
+  <data name="Stat_Invincible" xml:space="preserve">
+    <value>Yenilmez</value>
+  </data>
+  <data name="Column_History" xml:space="preserve">
+    <value>Geçmiş</value>
+  </data>
+  <data name="Column_Skill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="Column_Direct" xml:space="preserve">
+    <value>Doğrudan</value>
+  </data>
+  <data name="Column_Max" xml:space="preserve">
+    <value>Maks</value>
+  </data>
+  <data name="Column_Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="Column_Average" xml:space="preserve">
+    <value>Ort</value>
+  </data>
+  <data name="Column_Share" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Column_Events" xml:space="preserve">
+    <value>Olay</value>
+  </data>
+  <data name="Column_Action" xml:space="preserve">
+    <value>Eylem</value>
+  </data>
+  <data name="Column_Index" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="Column_Header" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="Column_Evidence" xml:space="preserve">
+    <value>Kanıt</value>
+  </data>
+  <data name="Column_Route" xml:space="preserve">
+    <value>Yol</value>
+  </data>
+  <data name="Column_Opcode" xml:space="preserve">
+    <value>Opcode</value>
+  </data>
+  <data name="Column_Opcodes" xml:space="preserve">
+    <value>Opcodelar</value>
+  </data>
+  <data name="Column_HeaderPacket" xml:space="preserve">
+    <value>Başlık paketi</value>
+  </data>
+  <data name="Column_Packet" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Column_Source" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Column_Target" xml:space="preserve">
+    <value>Hedef</value>
+  </data>
+  <data name="Column_Time" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="Column_Value" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Column_Effect" xml:space="preserve">
+    <value>Efekt</value>
+  </data>
+  <data name="Column_Canonicalization" xml:space="preserve">
+    <value>Normalleştirme</value>
+  </data>
+  <data name="Settings_CombatantSortMetric" xml:space="preserve">
+    <value>Sıralama</value>
+  </data>
+  <data name="Settings_CombatantSortMetric_DamagePerSecond" xml:space="preserve">
+    <value>DPS</value>
+  </data>
+  <data name="Settings_CombatantSortMetric_TotalDamage" xml:space="preserve">
+    <value>Toplam hasar</value>
+  </data>
+  <data name="Playback_WindowTitleFormat" xml:space="preserve">
+    <value>Tekrar oynatma (Deneysel) - {0}</value>
+  </data>
+  <data name="Playback_Open" xml:space="preserve">
+    <value>Tekrar oynat</value>
+  </data>
+  <data name="Playback_Status_Loading" xml:space="preserve">
+    <value>Kare yükleniyor</value>
+  </data>
+  <data name="Playback_Status_Playing" xml:space="preserve">
+    <value>Oynatılıyor</value>
+  </data>
+  <data name="Playback_Status_Paused" xml:space="preserve">
+    <value>Duraklatıldı</value>
+  </data>
+  <data name="Playback_PreviousEvent" xml:space="preserve">
+    <value>Önceki olay</value>
+  </data>
+  <data name="Playback_PreviousSecond" xml:space="preserve">
+    <value>1 saniye geri</value>
+  </data>
+  <data name="Playback_NextSecond" xml:space="preserve">
+    <value>1 saniye ileri</value>
+  </data>
+  <data name="Playback_NextEvent" xml:space="preserve">
+    <value>Sonraki olay</value>
+  </data>
+  <data name="Playback_Label_Speed" xml:space="preserve">
+    <value>Hız</value>
+  </data>
+  <data name="Playback_Label_Zoom" xml:space="preserve">
+    <value>Yakınlaştırma</value>
+  </data>
+  <data name="Playback_ZoomIn" xml:space="preserve">
+    <value>Yakınlaştır</value>
+  </data>
+  <data name="Playback_ZoomOut" xml:space="preserve">
+    <value>Uzaklaştır</value>
+  </data>
+  <data name="Playback_ZoomReset" xml:space="preserve">
+    <value>Yakınlaştırmayı sıfırla</value>
+  </data>
+  <data name="Playback_SelectCombatant" xml:space="preserve">
+    <value>İncelemek için bir savaşçı seç</value>
+  </data>
+  <data name="Playback_NoData" xml:space="preserve">
+    <value>Bu görünüm için veri yok</value>
+  </data>
+  <data name="Playback_Combatants" xml:space="preserve">
+    <value>Savaşçılar</value>
+  </data>
+  <data name="Playback_EventWindow" xml:space="preserve">
+    <value>Olay penceresi</value>
+  </data>
+  <data name="Playback_EventScope_All" xml:space="preserve">
+    <value>Tüm olaylar</value>
+  </data>
+  <data name="Playback_Metric_Count" xml:space="preserve">
+    <value>Sayı</value>
+  </data>
+  <data name="Playback_Metric_Coverage" xml:space="preserve">
+    <value>Kapsama</value>
+  </data>
+  <data name="Playback_Metric_ActiveTime" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="Playback_Column_Combatant" xml:space="preserve">
+    <value>Savaşçı</value>
+  </data>
+  <data name="Playback_Column_Damage" xml:space="preserve">
+    <value>Hasar</value>
+  </data>
+  <data name="Playback_Column_Healing" xml:space="preserve">
+    <value>İyileştirme</value>
+  </data>
+  <data name="Playback_Column_RemainingHp" xml:space="preserve">
+    <value>Kalan HP</value>
+  </data>
+  <data name="Playback_Column_Time" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="Playback_Column_Track" xml:space="preserve">
+    <value>İz</value>
+  </data>
+  <data name="Playback_Column_Source" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Playback_Column_Target" xml:space="preserve">
+    <value>Hedef</value>
+  </data>
+  <data name="Playback_Column_Skill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="Playback_Column_Amount" xml:space="preserve">
+    <value>Miktar</value>
+  </data>
+  <data name="Playback_Track_Combat" xml:space="preserve">
+    <value>Dövüş</value>
+  </data>
+  <data name="Playback_Track_Mechanic" xml:space="preserve">
+    <value>Mekanikler</value>
+  </data>
+  <data name="Playback_Track_Resource" xml:space="preserve">
+    <value>Kaynaklar</value>
+  </data>
+  <data name="Playback_Track_RemainingHp" xml:space="preserve">
+    <value>Kalan HP</value>
+  </data>
+  <data name="Playback_Track_Aura" xml:space="preserve">
+    <value>Efekt yaşam döngüsü</value>
+  </data>
+  <data name="Playback_AuraCoverage" xml:space="preserve">
+    <value>Buff / Debuff</value>
+  </data>
+  <data name="Playback_AuraUnknownFormat" xml:space="preserve">
+    <value>Efekt #{0}</value>
+  </data>
+  <data name="Playback_AuraDisposition_Label" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Playback_AuraDisposition_Buff" xml:space="preserve">
+    <value>Buff</value>
+  </data>
+  <data name="Playback_AuraDisposition_Debuff" xml:space="preserve">
+    <value>Debuff</value>
+  </data>
+  <data name="Playback_AuraDisposition_Unknown" xml:space="preserve">
+    <value>Bilinmiyor</value>
+  </data>
+  <data name="Playback_AuraEvidence_ExactNodeFormat" xml:space="preserve">
+    <value>Tam düğüm #{0}</value>
+  </data>
+  <data name="Playback_AuraEvidence_UnambiguousSlotFormat" xml:space="preserve">
+    <value>Skill {0}, slot {1}</value>
+  </data>
+  <data name="Playback_AuraEvidence_AmbiguousFormat" xml:space="preserve">
+    <value>Belirsiz: {0} aday</value>
+  </data>
+  <data name="Playback_AuraEvidence_None" xml:space="preserve">
+    <value>Anlamsal eşleşme yok</value>
+  </data>
+  <data name="Playback_Lifecycle_OpenFormat" xml:space="preserve">
+    <value>Uygula {0} ms</value>
+  </data>
+  <data name="Playback_Lifecycle_OpenIndefinite" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="Playback_Lifecycle_Renew" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="Playback_Lifecycle_ResultFormat" xml:space="preserve">
+    <value>Bitiş ({0})</value>
+  </data>
+  <data name="Playback_Track_State" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Playback_Track_Scene" xml:space="preserve">
+    <value>Sahne</value>
+  </data>
+  <data name="Playback_Track_Action" xml:space="preserve">
+    <value>Eylem</value>
+  </data>
+  <data name="Playback_Track_Diagnostic" xml:space="preserve">
+    <value>Tanılama</value>
+  </data>
+  <data name="Playback_Track_Other" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="Playback_Mechanic_HitAttemptFormat" xml:space="preserve">
+    <value>Vuruş {0}/{1}</value>
+  </data>
+  <data name="Scene_Activation" xml:space="preserve">
+    <value>Sahne başlangıcı</value>
+  </data>
+  <data name="Scene_Combat" xml:space="preserve">
+    <value>Dövüş sahnesi</value>
+  </data>
+  <data name="Scene_Teardown" xml:space="preserve">
+    <value>Sahne bitişi</value>
+  </data>
+  <data name="Scene_Archive" xml:space="preserve">
+    <value>Sahne arşivi</value>
+  </data>
+  <data name="Scene_Unknown" xml:space="preserve">
+    <value>Bilinmeyen sahne</value>
+  </data>
+  <data name="Category_Resource" xml:space="preserve">
+    <value>Kaynaklar</value>
+  </data>
+  <data name="Metric_ManaChange" xml:space="preserve">
+    <value>MP değişimi</value>
+  </data>
+  <data name="Metric_DirectEvents" xml:space="preserve">
+    <value>Doğrudan olaylar</value>
+  </data>
+  <data name="Metric_PeriodicEvents" xml:space="preserve">
+    <value>Periyodik olaylar</value>
+  </data>
+  <data name="Metric_ResourceSkills" xml:space="preserve">
+    <value>Kaynak skilleri</value>
+  </data>
+  <data name="Metric_ResourceEvents" xml:space="preserve">
+    <value>Kaynak olayları</value>
+  </data>
+  <data name="Empty_ResourceEvents" xml:space="preserve">
+    <value>Kaynak olayı yok</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_CriticalRate" xml:space="preserve">
+    <value>Kritik %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_BackRate" xml:space="preserve">
+    <value>Arkadan vuruş %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_HitCount" xml:space="preserve">
+    <value>Vuruş sayısı</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Healing" xml:space="preserve">
+    <value>İyileştirme</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow" xml:space="preserve">
+    <value>Kendi satırımı vurgula</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Settings_BackgroundOpacity" xml:space="preserve">
+    <value>Arka plan</value>
+  </data>
+</root>

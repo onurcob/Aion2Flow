@@ -351,6 +351,8 @@ public sealed class CombatMechanicPairRecord(int sourceId, int targetId, long ob
     public int InvincibleCount { get; private set; }
     public int MultiHitCount { get; private set; }
     public int MultiHitSubCount { get; private set; }
+    public int CriticalHitCount { get; private set; }
+    public int BackHitCount { get; private set; }
     public int LastSkillCode { get; private set; }
     public long FirstObserved { get; private set; } = observedAtMilliseconds;
     public long LastObserved { get; private set; } = observedAtMilliseconds;
@@ -365,6 +367,10 @@ public sealed class CombatMechanicPairRecord(int sourceId, int targetId, long ob
         InvincibleCount += mechanic.InvincibleCount;
         MultiHitCount += mechanic.MultiHitCount;
         MultiHitSubCount += mechanic.MultiHitSubCount;
+        if (mechanic.HitCount > 0 && (mechanic.Modifiers & DamageModifiers.Critical) != 0)
+            CriticalHitCount += mechanic.HitCount;
+        if (mechanic.HitCount > 0 && (mechanic.Modifiers & DamageModifiers.Back) != 0)
+            BackHitCount += mechanic.HitCount;
         LastSkillCode = skillCode;
         FirstObserved = Math.Min(FirstObserved, observedAtMilliseconds);
         LastObserved = Math.Max(LastObserved, observedAtMilliseconds);
@@ -380,6 +386,8 @@ public sealed class CombatMechanicPairRecord(int sourceId, int targetId, long ob
         InvincibleCount = snapshot.InvincibleCount;
         MultiHitCount = snapshot.MultiHitCount;
         MultiHitSubCount = snapshot.MultiHitSubCount;
+        CriticalHitCount = snapshot.CriticalHitCount;
+        BackHitCount = snapshot.BackHitCount;
         LastSkillCode = snapshot.LastSkillCode;
         FirstObserved = snapshot.FirstObserved;
         LastObserved = snapshot.LastObserved;
@@ -469,7 +477,9 @@ internal readonly record struct CombatMechanicPairRecordSnapshot(
     int LastSkillCode,
     long FirstObserved,
     long LastObserved,
-    long Revision)
+    long Revision,
+    int CriticalHitCount = 0,
+    int BackHitCount = 0)
 {
     public static CombatMechanicPairRecordSnapshot From(CombatMechanicPairRecord record) => new(
         record.SourceId,
@@ -484,7 +494,9 @@ internal readonly record struct CombatMechanicPairRecordSnapshot(
         record.LastSkillCode,
         record.FirstObserved,
         record.LastObserved,
-        record.Revision);
+        record.Revision,
+        record.CriticalHitCount,
+        record.BackHitCount);
 
     public CombatMechanicPairRecord ToRecord()
     {

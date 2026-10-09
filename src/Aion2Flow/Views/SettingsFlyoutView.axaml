@@ -82,6 +82,27 @@
                 </Grid>
             </Border>
 
+            <Border Classes="SettingsScaleRow">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="10">
+                    <TextBlock Grid.Column="0"
+                               Classes="SettingsRowLabel"
+                               Text="{markups:Translate Settings_BackgroundOpacity}" />
+                    <Slider x:Name="BackgroundOpacitySlider"
+                            Grid.Column="1"
+                            Classes="SettingsScaleSlider"
+                            Minimum="0"
+                            Maximum="100"
+                            TickFrequency="1"
+                            Value="{Binding BackgroundOpacityPercent, Mode=OneWay}"
+                            Loaded="BackgroundOpacitySliderLoaded"
+                            KeyUp="BackgroundOpacitySliderKeyUp" />
+                    <TextBlock Grid.Column="2"
+                               Classes="SettingsScaleValue"
+                               Text="{Binding #BackgroundOpacitySlider.Value, StringFormat='{}{0:F0}%'}" />
+                </Grid>
+            </Border>
+
             <Border Classes="SettingsHotkeyRow"
                     Tag="{x:Static hotkeys:GlobalHotkeyAction.BattleReset}"
                     Focusable="True"

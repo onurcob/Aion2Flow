@@ -53,6 +53,12 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
             ShowDamagePerSecondColumn = persisted.ShowDamagePerSecondColumn;
             ShowDamageColumn = persisted.ShowDamageColumn;
             ShowTotalDamagePerSecond = persisted.ShowTotalDamagePerSecond;
+            ShowCriticalRateColumn = persisted.ShowCriticalRateColumn;
+            ShowBackRateColumn = persisted.ShowBackRateColumn;
+            ShowHitCountColumn = persisted.ShowHitCountColumn;
+            ShowHealingColumn = persisted.ShowHealingColumn;
+            HighlightLocalPlayerRow = persisted.HighlightLocalPlayerRow;
+            BackgroundOpacityPercent = persisted.BackgroundOpacityPercent;
             EncounterTimeDisplayFormat = persisted.EncounterTimeDisplayFormat;
             ShowFocusStatusBar = persisted.ShowFocusStatusBar;
             HideHeaderWhenClickThrough = persisted.HideHeaderWhenClickThrough;
@@ -155,6 +161,33 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(ShowTotalDamagePerSecondDisplay))]
     [NotifyPropertyChangedFor(nameof(MainMetricVisibilityDisplay))]
     public partial bool ShowTotalDamagePerSecond { get; set; } = true;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowCriticalRateColumnDisplay))]
+    [NotifyPropertyChangedFor(nameof(MainMetricVisibilityDisplay))]
+    public partial bool ShowCriticalRateColumn { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowBackRateColumnDisplay))]
+    [NotifyPropertyChangedFor(nameof(MainMetricVisibilityDisplay))]
+    public partial bool ShowBackRateColumn { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowHitCountColumnDisplay))]
+    [NotifyPropertyChangedFor(nameof(MainMetricVisibilityDisplay))]
+    public partial bool ShowHitCountColumn { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowHealingColumnDisplay))]
+    [NotifyPropertyChangedFor(nameof(MainMetricVisibilityDisplay))]
+    public partial bool ShowHealingColumn { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HighlightLocalPlayerRowDisplay))]
+    public partial bool HighlightLocalPlayerRow { get; set; } = true;
+
+    [ObservableProperty]
+    public partial int BackgroundOpacityPercent { get; set; } = 100;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(EncounterTimeDisplayFormatDisplay))]
@@ -282,7 +315,17 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
 
     public string ShowTotalDamagePerSecondDisplay => ResolveMainMetricVisibilityDisplay(ShowTotalDamagePerSecond);
 
-    public string MainMetricVisibilityDisplay => $"{Convert.ToInt32(ShowDamagePerSecondColumn) + Convert.ToInt32(ShowDamageColumn) + Convert.ToInt32(ShowTotalDamagePerSecond)}/3";
+    public string ShowCriticalRateColumnDisplay => ResolveMainMetricVisibilityDisplay(ShowCriticalRateColumn);
+
+    public string ShowBackRateColumnDisplay => ResolveMainMetricVisibilityDisplay(ShowBackRateColumn);
+
+    public string ShowHitCountColumnDisplay => ResolveMainMetricVisibilityDisplay(ShowHitCountColumn);
+
+    public string ShowHealingColumnDisplay => ResolveMainMetricVisibilityDisplay(ShowHealingColumn);
+
+    public string HighlightLocalPlayerRowDisplay => Localization[HighlightLocalPlayerRow ? "Settings_HighlightLocalPlayerRow_On" : "Settings_HighlightLocalPlayerRow_Off"];
+
+    public string MainMetricVisibilityDisplay => $"{Convert.ToInt32(ShowDamagePerSecondColumn) + Convert.ToInt32(ShowDamageColumn) + Convert.ToInt32(ShowTotalDamagePerSecond) + Convert.ToInt32(ShowCriticalRateColumn) + Convert.ToInt32(ShowBackRateColumn) + Convert.ToInt32(ShowHitCountColumn) + Convert.ToInt32(ShowHealingColumn)}/7";
 
     public string EncounterTimeDisplayFormatDisplay => Localization[$"Settings_TimeDisplayFormat_{EncounterTimeDisplayFormat}"];
 
@@ -370,6 +413,25 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
     partial void OnShowDamageColumnChanged(bool value) => PersistSettings();
 
     partial void OnShowTotalDamagePerSecondChanged(bool value) => PersistSettings();
+
+    partial void OnShowCriticalRateColumnChanged(bool value) => PersistSettings();
+
+    partial void OnShowBackRateColumnChanged(bool value) => PersistSettings();
+
+    partial void OnShowHitCountColumnChanged(bool value) => PersistSettings();
+
+    partial void OnShowHealingColumnChanged(bool value) => PersistSettings();
+
+    partial void OnHighlightLocalPlayerRowChanged(bool value) => PersistSettings();
+
+    partial void OnBackgroundOpacityPercentChanged(int value) => PersistSettings();
+
+    public void SetBackgroundOpacityPercent(int percent)
+    {
+        var clamped = Math.Clamp(percent, 0, 100);
+        if (BackgroundOpacityPercent != clamped)
+            BackgroundOpacityPercent = clamped;
+    }
 
     partial void OnEncounterTimeDisplayFormatChanged(EncounterTimeDisplayFormat value) => PersistSettings();
 
@@ -581,6 +643,12 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
             s.ShowDamagePerSecondColumn = ShowDamagePerSecondColumn;
             s.ShowDamageColumn = ShowDamageColumn;
             s.ShowTotalDamagePerSecond = ShowTotalDamagePerSecond;
+            s.ShowCriticalRateColumn = ShowCriticalRateColumn;
+            s.ShowBackRateColumn = ShowBackRateColumn;
+            s.ShowHitCountColumn = ShowHitCountColumn;
+            s.ShowHealingColumn = ShowHealingColumn;
+            s.HighlightLocalPlayerRow = HighlightLocalPlayerRow;
+            s.BackgroundOpacityPercent = BackgroundOpacityPercent;
             s.EncounterTimeDisplayFormat = EncounterTimeDisplayFormat;
             s.ShowFocusStatusBar = ShowFocusStatusBar;
             s.HideHeaderWhenClickThrough = HideHeaderWhenClickThrough;
@@ -616,6 +684,11 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
         OnPropertyChanged(nameof(ShowDamagePerSecondColumnDisplay));
         OnPropertyChanged(nameof(ShowDamageColumnDisplay));
         OnPropertyChanged(nameof(ShowTotalDamagePerSecondDisplay));
+        OnPropertyChanged(nameof(ShowCriticalRateColumnDisplay));
+        OnPropertyChanged(nameof(ShowBackRateColumnDisplay));
+        OnPropertyChanged(nameof(ShowHitCountColumnDisplay));
+        OnPropertyChanged(nameof(ShowHealingColumnDisplay));
+        OnPropertyChanged(nameof(HighlightLocalPlayerRowDisplay));
         OnPropertyChanged(nameof(MainMetricVisibilityDisplay));
         OnPropertyChanged(nameof(EncounterTimeDisplayFormatDisplay));
         OnPropertyChanged(nameof(ShowFocusStatusBarDisplay));
@@ -644,6 +717,7 @@ public sealed partial class SettingsFlyoutViewModel : ObservableObject
         Languages.Add(new LanguageOption(LanguageService.TraditionalChinese, "繁體中文"));
         Languages.Add(new LanguageOption(LanguageService.English, "English"));
         Languages.Add(new LanguageOption(LanguageService.Korean, "한국어"));
+        Languages.Add(new LanguageOption(LanguageService.Turkish, "Türkçe"));
         SelectedLanguage = Languages.FirstOrDefault(x => x.Code == selectedCode) ?? Languages.FirstOrDefault();
     }
 

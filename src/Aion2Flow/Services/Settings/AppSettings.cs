@@ -25,6 +25,18 @@ public sealed class AppSettings
 
     public bool ShowTotalDamagePerSecond { get; set; } = true;
 
+    public bool ShowCriticalRateColumn { get; set; }
+
+    public bool ShowBackRateColumn { get; set; }
+
+    public bool ShowHitCountColumn { get; set; }
+
+    public bool ShowHealingColumn { get; set; }
+
+    public bool HighlightLocalPlayerRow { get; set; } = true;
+
+    public int BackgroundOpacityPercent { get; set => field = Math.Clamp(value, 0, 100); } = 100;
+
     public EncounterTimeDisplayFormat EncounterTimeDisplayFormat
     {
         get;

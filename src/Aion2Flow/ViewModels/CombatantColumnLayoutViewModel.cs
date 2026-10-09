@@ -32,6 +32,38 @@ public sealed class CombatantColumnLayoutViewModel(UiFrameBatchService frameBatc
         private set => SetFrameProperty(ref field, value);
     } = true;
 
+    public bool ShowCriticalRateColumn
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public bool ShowBackRateColumn
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public bool ShowHitCountColumn
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public bool ShowHealingColumn
+    {
+        get;
+        private set => SetFrameProperty(ref field, value);
+    }
+
+    public void ApplyExtraColumnSettings(bool showCriticalRateColumn, bool showBackRateColumn, bool showHitCountColumn, bool showHealingColumn)
+    {
+        ShowCriticalRateColumn = showCriticalRateColumn;
+        ShowBackRateColumn = showBackRateColumn;
+        ShowHitCountColumn = showHitCountColumn;
+        ShowHealingColumn = showHealingColumn;
+    }
+
     public void ApplyMetricDisplaySettings(bool showDamagePerSecondColumn, bool showDamageColumn, bool showTotalDamagePerSecond, bool useCompactMainMetrics)
     {
         ShowDamagePerSecondColumn = showDamagePerSecondColumn;

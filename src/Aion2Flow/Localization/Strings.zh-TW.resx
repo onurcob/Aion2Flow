@@ -285,4 +285,28 @@
   <data name="Metric_ResourceSkills" xml:space="preserve"><value>資源技能</value></data>
   <data name="Metric_ResourceEvents" xml:space="preserve"><value>資源事件</value></data>
   <data name="Empty_ResourceEvents" xml:space="preserve"><value>沒有資源事件</value></data>
+  <data name="Settings_MainMetricVisibility_CriticalRate" xml:space="preserve">
+    <value>暴擊 %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_BackRate" xml:space="preserve">
+    <value>背擊 %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_HitCount" xml:space="preserve">
+    <value>命中次數</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Healing" xml:space="preserve">
+    <value>治療量</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow" xml:space="preserve">
+    <value>突顯自己</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_On" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_Off" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Settings_BackgroundOpacity" xml:space="preserve">
+    <value>背景</value>
+  </data>
 </root>

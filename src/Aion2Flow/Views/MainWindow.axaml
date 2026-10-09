@@ -31,7 +31,8 @@
         <Border Grid.Row="0"
                 Classes="MainHudHeader">
             <Grid>
-                <Border Classes="MainHudHeaderBackdrop"
+                <Border x:Name="MainHudHeaderBackdrop"
+                        Classes="MainHudHeaderBackdrop"
                         IsHitTestVisible="False" />
 
                 <Grid Classes="MainHudForeground"
@@ -94,7 +95,8 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="1"
+        <Border x:Name="MainHudContentBackdrop"
+                Grid.Row="1"
                 Grid.RowSpan="3"
                 Classes="MainHudContentBackdrop"
                 IsHitTestVisible="False" />
@@ -220,6 +222,7 @@
                 <DataTemplate x:DataType="vm:CombatantRowViewModel">
                     <Border Name="RowRoot"
                             Classes="OverlayRowCard"
+                            Classes.local-player="{Binding IsLocalPlayer}"
                             Tapped="CombatantRowTapped">
                         <Grid>
                             <controls:QuestSelectionHighlight Classes="CombatantRowSelection"
@@ -236,6 +239,10 @@
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricPrimary" />
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricSecondary" />
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricTertiary" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricCritical" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricBack" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricHits" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CombatantMetricHealing" />
                                 </Grid.ColumnDefinitions>
                                 <controls:PcDisplay Grid.Column="0"
                                                     Classes="OverlayRowName"
@@ -274,6 +281,46 @@
                                                        Value="{Binding BossShareRatio}"
                                                        IsVisible="{Binding Columns.ShowBossShareColumn}"
                                                        Formatter="P1"
+                                                       Margin="6,0,0,0"
+                                                       VerticalAlignment="Center" />
+
+                                <controls:NumericBlock Grid.Column="4"
+                                                       Classes="OverlayRowMetric CombatantExtraMetric"
+                                                       Value="{Binding CriticalRate}"
+                                                       IsVisible="{Binding Columns.ShowCriticalRateColumn}"
+                                                       Formatter="P0"
+                                                       Suffix=" C"
+                                                       Margin="6,0,0,0"
+                                                       VerticalAlignment="Center" />
+
+                                <controls:NumericBlock Grid.Column="5"
+                                                       Classes="OverlayRowMetric CombatantExtraMetric"
+                                                       Value="{Binding BackRate}"
+                                                       IsVisible="{Binding Columns.ShowBackRateColumn}"
+                                                       Formatter="P0"
+                                                       Suffix=" B"
+                                                       Margin="6,0,0,0"
+                                                       VerticalAlignment="Center" />
+
+                                <controls:NumericBlock Grid.Column="6"
+                                                       Classes="OverlayRowMetric CombatantExtraMetric"
+                                                       Value="{Binding HitCount}"
+                                                       IsVisible="{Binding Columns.ShowHitCountColumn}"
+                                                       StableWidthScopeKey="{Binding Id}"
+                                                       Formatter="N0"
+                                                       Suffix=" h"
+                                                       Margin="6,0,0,0"
+                                                       VerticalAlignment="Center" />
+
+                                <controls:NumericBlock Grid.Column="7"
+                                                       Classes="OverlayRowMetric CombatantExtraMetric CombatantHealingMetric"
+                                                       Value="{Binding Healing}"
+                                                       IsVisible="{Binding Columns.ShowHealingColumn}"
+                                                       StableWidthScopeKey="{Binding Id}"
+                                                       UseCompactNotation="{Binding Columns.UseCompactMainMetrics}"
+                                                       Formatter="N0"
+                                                       CompactThreshold="1000"
+                                                       CompactSignificantDigits="3"
                                                        Margin="6,0,0,0"
                                                        VerticalAlignment="Center" />
                             </Grid>

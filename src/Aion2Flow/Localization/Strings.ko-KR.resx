@@ -285,4 +285,28 @@
   <data name="Metric_ResourceSkills" xml:space="preserve"><value>자원 스킬</value></data>
   <data name="Metric_ResourceEvents" xml:space="preserve"><value>자원 이벤트</value></data>
   <data name="Empty_ResourceEvents" xml:space="preserve"><value>자원 이벤트 없음</value></data>
+  <data name="Settings_MainMetricVisibility_CriticalRate" xml:space="preserve">
+    <value>치명타 %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_BackRate" xml:space="preserve">
+    <value>후방 공격 %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_HitCount" xml:space="preserve">
+    <value>타격 수</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Healing" xml:space="preserve">
+    <value>치유량</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow" xml:space="preserve">
+    <value>내 행 강조</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_On" xml:space="preserve">
+    <value>켜기</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_Off" xml:space="preserve">
+    <value>끄기</value>
+  </data>
+  <data name="Settings_BackgroundOpacity" xml:space="preserve">
+    <value>배경</value>
+  </data>
 </root>

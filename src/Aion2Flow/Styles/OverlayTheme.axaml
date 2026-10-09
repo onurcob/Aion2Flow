@@ -799,6 +799,24 @@
         <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
 
+    <Style Selector="controls|AnimatedItemsViewItem Border.OverlayRowCard.local-player">
+        <Setter Property="BorderBrush" Value="#FFE8C15A" />
+        <Setter Property="BorderThickness" Value="3,0,0,0" />
+    </Style>
+
+    <Style Selector="controls|AnimatedItemsViewItem Border.OverlayRowCard.local-player controls|PcDisplay.OverlayRowName TextBlock#PART_Text">
+        <Setter Property="Foreground" Value="#FFF3D27A" />
+    </Style>
+
+    <Style Selector="controls|NumericBlock.CombatantExtraMetric">
+        <Setter Property="FontSize" Value="{StaticResource AppFontSize.Caption}" />
+        <Setter Property="Opacity" Value="0.85" />
+    </Style>
+
+    <Style Selector="controls|NumericBlock.CombatantHealingMetric">
+        <Setter Property="Foreground" Value="#FF8FE3A8" />
+    </Style>
+
     <Style Selector="controls|PcDisplay.OverlayRowName TextBlock#PART_Text">
         <Setter Property="FontSize" Value="{StaticResource AppFontSize.Primary}" />
         <Setter Property="FontWeight" Value="Bold" />

@@ -286,4 +286,28 @@
   <data name="Metric_ResourceSkills" xml:space="preserve"><value>Resource skills</value></data>
   <data name="Metric_ResourceEvents" xml:space="preserve"><value>Resource events</value></data>
   <data name="Empty_ResourceEvents" xml:space="preserve"><value>No resource events</value></data>
+  <data name="Settings_MainMetricVisibility_CriticalRate" xml:space="preserve">
+    <value>Critical %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_BackRate" xml:space="preserve">
+    <value>Back attack %</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_HitCount" xml:space="preserve">
+    <value>Hit count</value>
+  </data>
+  <data name="Settings_MainMetricVisibility_Healing" xml:space="preserve">
+    <value>Healing</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow" xml:space="preserve">
+    <value>Highlight my row</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Settings_HighlightLocalPlayerRow_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="Settings_BackgroundOpacity" xml:space="preserve">
+    <value>Background</value>
+  </data>
 </root>

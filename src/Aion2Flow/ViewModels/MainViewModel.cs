@@ -286,8 +286,14 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
         else if (e.PropertyName == nameof(SettingsFlyoutViewModel.UseCompactMainMetrics) ||
                  e.PropertyName == nameof(SettingsFlyoutViewModel.ShowDamagePerSecondColumn) ||
                  e.PropertyName == nameof(SettingsFlyoutViewModel.ShowDamageColumn) ||
-                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowTotalDamagePerSecond))
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowTotalDamagePerSecond) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowCriticalRateColumn) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowBackRateColumn) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowHitCountColumn) ||
+                 e.PropertyName == nameof(SettingsFlyoutViewModel.ShowHealingColumn))
             ApplyCombatantMetricDisplaySettings();
+        else if (e.PropertyName == nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRow))
+            Dispatcher.UIThread.Post(() => RefreshDisplayedSnapshot());
         else if (e.PropertyName == nameof(SettingsFlyoutViewModel.EncounterTimeDisplayFormat))
             _combatantDetails.EncounterTimeDisplayFormat = SettingsFlyout.EncounterTimeDisplayFormat;
         else if (e.PropertyName == nameof(SettingsFlyoutViewModel.CombatantStatisticsScope))
@@ -505,6 +511,8 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
                 row.HealingPerSecond = data.HealingPerSecond;
                 row.Damage = data.DamageAmount;
                 row.Healing = data.HealingAmount;
+                row.ApplyExtendedMetrics(in data);
+                row.IsLocalPlayer = IsHighlightedLocalPlayer(row.Id);
             }
             else
             {
@@ -523,7 +531,7 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
             if (!ShouldDisplayCombatant(id, data))
                 continue;
 
-            Combatants.Add(new CombatantRowViewModel(
+            var newRow = new CombatantRowViewModel(
                 _frameBatchService,
                 CombatantColumns,
                 id,
@@ -531,7 +539,10 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
                 data.DamagePerSecond,
                 data.HealingPerSecond,
                 data.DamageAmount,
-                data.HealingAmount));
+                data.HealingAmount);
+            newRow.ApplyExtendedMetrics(in data);
+            newRow.IsLocalPlayer = IsHighlightedLocalPlayer(id);
+            Combatants.Add(newRow);
         }
 
         if (SelectedCombatant is { } selectedCombatant && !Combatants.ContainsKey(selectedCombatant.Id))
@@ -819,7 +830,15 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
             SettingsFlyout.ShowDamageColumn,
             SettingsFlyout.ShowTotalDamagePerSecond,
             SettingsFlyout.UseCompactMainMetrics);
+        CombatantColumns.ApplyExtraColumnSettings(
+            SettingsFlyout.ShowCriticalRateColumn,
+            SettingsFlyout.ShowBackRateColumn,
+            SettingsFlyout.ShowHitCountColumn,
+            SettingsFlyout.ShowHealingColumn);
     }
+
+    private bool IsHighlightedLocalPlayer(int combatantId) =>
+        SettingsFlyout.HighlightLocalPlayerRow && DisplayContext?.IsLocalPlayer(combatantId) == true;
 
     private void RefreshCombatantBars(Guid encounterId)
     {

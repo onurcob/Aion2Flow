@@ -474,7 +474,10 @@ public sealed class SceneCombatSnapshotAdapter(EntityStore entities, EntityVital
         {
             var sourceId = ResolveCombatantIdCached(pair.SourceId);
             if (sourceId > 0)
-                _ = builder.GetOrAddCombatant(sourceId);
+            {
+                ref var metrics = ref builder.GetOrAddCombatant(sourceId);
+                metrics.ApplyMechanicTotals(pair.HitCount, pair.CriticalHitCount, pair.BackHitCount);
+            }
         }
 
         foreach (var pair in resources.Pairs.Values)

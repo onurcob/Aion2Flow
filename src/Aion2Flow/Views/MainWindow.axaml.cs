@@ -75,6 +75,7 @@ public partial class MainWindow : Window
         DataContext.EncounterHistory.CollectionChanged += OnEncounterHistoryCollectionChanged;
         DataContext.SettingsFlyout.PropertyChanged += OnSettingsFlyoutPropertyChanged;
         RefreshHeaderVisibilityPreference();
+        RefreshBackgroundOpacityPreference();
         RebuildEncounterHistoryMenuItems();
         _globalHotkeyService.Triggered += OnGlobalHotkeyTriggered;
         _overlayInteractionController.ModeChanged += OnOverlayInteractionModeChanged;
@@ -463,8 +464,28 @@ public partial class MainWindow : Window
         if (e.PropertyName == nameof(SettingsFlyoutViewModel.HideHeaderWhenClickThrough))
         {
             RefreshHeaderVisibilityPreference();
+            return;
+        }
+
+        if (e.PropertyName == nameof(SettingsFlyoutViewModel.BackgroundOpacityPercent))
+        {
+            RefreshBackgroundOpacityPreference();
         }
     }
+
+    // Base colors mirror OverlayBrush.MainHudBackdrop / OverlayBrush.MainHudContentBackdrop in OverlayTheme.axaml.
+    private static readonly Color HeaderBackdropBaseColor = Color.FromArgb(0xA8, 0x0A, 0x0D, 0x0F);
+    private static readonly Color ContentBackdropBaseColor = Color.FromArgb(0x78, 0x0A, 0x0D, 0x0F);
+
+    private void RefreshBackgroundOpacityPreference()
+    {
+        var factor = Math.Clamp(DataContext.SettingsFlyout.BackgroundOpacityPercent, 0, 100) / 100d;
+        MainHudHeaderBackdrop.Background = new SolidColorBrush(ScaleAlpha(HeaderBackdropBaseColor, factor));
+        MainHudContentBackdrop.Background = new SolidColorBrush(ScaleAlpha(ContentBackdropBaseColor, factor));
+    }
+
+    private static Color ScaleAlpha(Color color, double factor) =>
+        Color.FromArgb((byte)Math.Round(color.A * factor, MidpointRounding.AwayFromZero), color.R, color.G, color.B);
 
     private void RefreshHeaderVisibilityPreference() =>
         MainHudShell.Classes.Set("hide-header-when-click-through", DataContext.SettingsFlyout.HideHeaderWhenClickThrough);

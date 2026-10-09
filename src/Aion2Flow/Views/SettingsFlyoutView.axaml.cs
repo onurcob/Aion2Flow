@@ -37,6 +37,11 @@ public partial class SettingsFlyoutView : UserControl
     private MenuItem? _showPlayerShortServerNameMenuItem;
     private MenuItem? _showPlayerLegionNameMenuItem;
     private MenuItem? _tintPlayerNamesByFactionMenuItem;
+    private MenuItem? _showCriticalRateColumnMenuItem;
+    private MenuItem? _showBackRateColumnMenuItem;
+    private MenuItem? _showHitCountColumnMenuItem;
+    private MenuItem? _showHealingColumnMenuItem;
+    private MenuItem? _highlightLocalPlayerRowMenuItem;
     private MenuItem? _skillMonitorMenuItem;
     private MenuItem? _skillMonitorEnableMenuItem;
     private MenuItem? _skillMonitorSettingsMenuItem;
@@ -75,6 +80,29 @@ public partial class SettingsFlyoutView : UserControl
     {
         if (sender is Slider slider)
             ViewModel?.SetUiScalePercent((int)Math.Round(slider.Value, MidpointRounding.AwayFromZero));
+    }
+
+    private void BackgroundOpacitySliderLoaded(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Slider slider)
+        {
+            slider.RemoveHandler(PointerReleasedEvent, BackgroundOpacitySliderPointerReleased);
+            slider.AddHandler(PointerReleasedEvent, BackgroundOpacitySliderPointerReleased, handledEventsToo: true);
+        }
+    }
+
+    private void BackgroundOpacitySliderPointerReleased(object? sender, PointerReleasedEventArgs e) => ApplyBackgroundOpacityFromSlider(sender);
+
+    private void BackgroundOpacitySliderKeyUp(object? sender, KeyEventArgs e)
+    {
+        if (e.Key is Key.Left or Key.Right or Key.Up or Key.Down or Key.PageUp or Key.PageDown or Key.Home or Key.End)
+            ApplyBackgroundOpacityFromSlider(sender);
+    }
+
+    private void ApplyBackgroundOpacityFromSlider(object? sender)
+    {
+        if (sender is Slider slider)
+            ViewModel?.SetBackgroundOpacityPercent((int)Math.Round(slider.Value, MidpointRounding.AwayFromZero));
     }
 
     private void OnDataContextChanged(object? sender, EventArgs e)
@@ -158,6 +186,14 @@ public partial class SettingsFlyoutView : UserControl
             case nameof(SettingsFlyoutViewModel.ShowDamageColumnDisplay):
             case nameof(SettingsFlyoutViewModel.ShowTotalDamagePerSecond):
             case nameof(SettingsFlyoutViewModel.ShowTotalDamagePerSecondDisplay):
+            case nameof(SettingsFlyoutViewModel.ShowCriticalRateColumn):
+            case nameof(SettingsFlyoutViewModel.ShowCriticalRateColumnDisplay):
+            case nameof(SettingsFlyoutViewModel.ShowBackRateColumn):
+            case nameof(SettingsFlyoutViewModel.ShowBackRateColumnDisplay):
+            case nameof(SettingsFlyoutViewModel.ShowHitCountColumn):
+            case nameof(SettingsFlyoutViewModel.ShowHitCountColumnDisplay):
+            case nameof(SettingsFlyoutViewModel.ShowHealingColumn):
+            case nameof(SettingsFlyoutViewModel.ShowHealingColumnDisplay):
             case nameof(SettingsFlyoutViewModel.MainMetricVisibilityDisplay):
                 RefreshMainMetricVisibilityMenuItems();
                 break;
@@ -193,6 +229,8 @@ public partial class SettingsFlyoutView : UserControl
             case nameof(SettingsFlyoutViewModel.ShowPlayerLegionNameDisplay):
             case nameof(SettingsFlyoutViewModel.TintPlayerNamesByFaction):
             case nameof(SettingsFlyoutViewModel.TintPlayerNamesByFactionDisplay):
+            case nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRow):
+            case nameof(SettingsFlyoutViewModel.HighlightLocalPlayerRowDisplay):
             case nameof(SettingsFlyoutViewModel.PlayerNameSettingsDisplay):
                 RefreshPlayerNameSettingsMenuItems();
                 break;
@@ -449,6 +487,14 @@ public partial class SettingsFlyoutView : UserControl
         _mainMetricVisibilityMenuItem.Items.Add(_showDamagePerSecondColumnMenuItem);
         _mainMetricVisibilityMenuItem.Items.Add(_showDamageColumnMenuItem);
         _mainMetricVisibilityMenuItem.Items.Add(_showTotalDamagePerSecondMenuItem);
+        _showCriticalRateColumnMenuItem = CreateToggleMenuItem(vm.Localization["Settings_MainMetricVisibility_CriticalRate"], vm.ShowCriticalRateColumnDisplay, vm.ShowCriticalRateColumn, ShowCriticalRateColumnMenuItemClicked);
+        _showBackRateColumnMenuItem = CreateToggleMenuItem(vm.Localization["Settings_MainMetricVisibility_BackRate"], vm.ShowBackRateColumnDisplay, vm.ShowBackRateColumn, ShowBackRateColumnMenuItemClicked);
+        _showHitCountColumnMenuItem = CreateToggleMenuItem(vm.Localization["Settings_MainMetricVisibility_HitCount"], vm.ShowHitCountColumnDisplay, vm.ShowHitCountColumn, ShowHitCountColumnMenuItemClicked);
+        _showHealingColumnMenuItem = CreateToggleMenuItem(vm.Localization["Settings_MainMetricVisibility_Healing"], vm.ShowHealingColumnDisplay, vm.ShowHealingColumn, ShowHealingColumnMenuItemClicked);
+        _mainMetricVisibilityMenuItem.Items.Add(_showCriticalRateColumnMenuItem);
+        _mainMetricVisibilityMenuItem.Items.Add(_showBackRateColumnMenuItem);
+        _mainMetricVisibilityMenuItem.Items.Add(_showHitCountColumnMenuItem);
+        _mainMetricVisibilityMenuItem.Items.Add(_showHealingColumnMenuItem);
     }
 
     private void RefreshMainMetricVisibilityMenuItems()
@@ -463,6 +509,10 @@ public partial class SettingsFlyoutView : UserControl
         RefreshToggleMenuItem(_showDamagePerSecondColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_DamagePerSecond"], vm.ShowDamagePerSecondColumnDisplay, vm.ShowDamagePerSecondColumn);
         RefreshToggleMenuItem(_showDamageColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_Damage"], vm.ShowDamageColumnDisplay, vm.ShowDamageColumn);
         RefreshToggleMenuItem(_showTotalDamagePerSecondMenuItem, vm.Localization["Settings_MainMetricVisibility_TotalDamagePerSecond"], vm.ShowTotalDamagePerSecondDisplay, vm.ShowTotalDamagePerSecond);
+        RefreshToggleMenuItem(_showCriticalRateColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_CriticalRate"], vm.ShowCriticalRateColumnDisplay, vm.ShowCriticalRateColumn);
+        RefreshToggleMenuItem(_showBackRateColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_BackRate"], vm.ShowBackRateColumnDisplay, vm.ShowBackRateColumn);
+        RefreshToggleMenuItem(_showHitCountColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_HitCount"], vm.ShowHitCountColumnDisplay, vm.ShowHitCountColumn);
+        RefreshToggleMenuItem(_showHealingColumnMenuItem, vm.Localization["Settings_MainMetricVisibility_Healing"], vm.ShowHealingColumnDisplay, vm.ShowHealingColumn);
     }
 
     private void RebuildEncounterTimeDisplayFormatMenuItems()
@@ -545,6 +595,8 @@ public partial class SettingsFlyoutView : UserControl
         _playerNameSettingsMenuItem.Items.Add(_showPlayerShortServerNameMenuItem);
         _playerNameSettingsMenuItem.Items.Add(_showPlayerLegionNameMenuItem);
         _playerNameSettingsMenuItem.Items.Add(_tintPlayerNamesByFactionMenuItem);
+        _highlightLocalPlayerRowMenuItem = CreateToggleMenuItem(vm.Localization["Settings_HighlightLocalPlayerRow"], vm.HighlightLocalPlayerRowDisplay, vm.HighlightLocalPlayerRow, HighlightLocalPlayerRowMenuItemClicked);
+        _playerNameSettingsMenuItem.Items.Add(_highlightLocalPlayerRowMenuItem);
         RefreshPlayerNameSettingsMenuItems();
     }
 
@@ -659,6 +711,11 @@ public partial class SettingsFlyoutView : UserControl
         if (_tintPlayerNamesByFactionMenuItem is not null)
         {
             RefreshToggleMenuItem(_tintPlayerNamesByFactionMenuItem, vm.Localization["Settings_PlayerFactionTint"], vm.TintPlayerNamesByFactionDisplay, vm.TintPlayerNamesByFaction);
+        }
+
+        if (_highlightLocalPlayerRowMenuItem is not null)
+        {
+            RefreshToggleMenuItem(_highlightLocalPlayerRowMenuItem, vm.Localization["Settings_HighlightLocalPlayerRow"], vm.HighlightLocalPlayerRowDisplay, vm.HighlightLocalPlayerRow);
         }
     }
 
@@ -804,6 +861,56 @@ public partial class SettingsFlyoutView : UserControl
         if (ViewModel is { } vm)
         {
             vm.ShowPlayerLegionName = !vm.ShowPlayerLegionName;
+        }
+
+        e.Handled = true;
+    }
+
+    private void ShowCriticalRateColumnMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.ShowCriticalRateColumn = !vm.ShowCriticalRateColumn;
+        }
+
+        e.Handled = true;
+    }
+
+    private void ShowBackRateColumnMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.ShowBackRateColumn = !vm.ShowBackRateColumn;
+        }
+
+        e.Handled = true;
+    }
+
+    private void ShowHitCountColumnMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.ShowHitCountColumn = !vm.ShowHitCountColumn;
+        }
+
+        e.Handled = true;
+    }
+
+    private void ShowHealingColumnMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.ShowHealingColumn = !vm.ShowHealingColumn;
+        }
+
+        e.Handled = true;
+    }
+
+    private void HighlightLocalPlayerRowMenuItemClicked(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel is { } vm)
+        {
+            vm.HighlightLocalPlayerRow = !vm.HighlightLocalPlayerRow;
         }
 
         e.Handled = true;
