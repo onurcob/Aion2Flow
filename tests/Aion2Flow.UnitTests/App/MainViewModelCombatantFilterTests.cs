@@ -993,6 +993,8 @@ public sealed class MainViewModelCombatantFilterTests
     public void RefreshCombatStats_BossScene_MapTransitionKeepsArchivedContextUntilNextBoss()
     {
         var fixture = MainViewModelFixture.Create(SceneKind.Boss);
+        // The next-boss session below never re-sends the player's nickname, so keep unnamed rows visible.
+        fixture.ViewModel.SettingsFlyout.HideUnnamedCombatants = false;
         var sink = fixture.CreateLiveSink();
         var origin = fixture.SceneStartedMilliseconds;
         var mapSource = new PacketObservationSource(origin + 1, 0, 0x2136, 0, 1, default);

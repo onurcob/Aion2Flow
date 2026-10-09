@@ -1050,7 +1050,7 @@ public sealed partial class MainViewModel : FrameBatchedObservableObject, IAsync
             // Entities with an inferred class but no known nickname (summons whose owner was not
             // resolved, or players seen before their name packet) show up as bare numeric rows.
             return !SettingsFlyout.HideUnnamedCombatants ||
-                   (DisplayContext?.TryResolvePcMetadata(combatantId, out var named) == true && named.HasNickname);
+                   (DisplayContext?.TryResolvePcMetadata(combatantId, out var named) == true && (named.HasNickname || named.IsLocalPlayer));
         }
 
         if (DisplayContext?.TryResolvePcMetadata(combatantId, out var metadata) != true)
