@@ -39,7 +39,15 @@ jobs:
         run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore
 
       - name: Test
-        run: dotnet test --solution ${{ env.SOLUTION_PATH }} -c Release --no-build --max-parallel-test-modules 1
+        run: |
+          dotnet test --solution ${{ env.SOLUTION_PATH }} -c Release --no-build --max-parallel-test-modules 1 2>&1 | Tee-Object -FilePath test-output.log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            Select-String -Path test-output.log -Pattern '(failed|Assert\.|Exception|Expected|Actual)' |
+              Select-Object -First 60 |
+              ForEach-Object { Write-Output ("::error::" + $_.Line.Trim()) }
+            exit $code
+          }
 
       - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o "$env:RUNNER_TEMP\publish"
