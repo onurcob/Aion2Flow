@@ -12,6 +12,7 @@
         Height="760"
         MinWidth="640"
         MinHeight="480"
+        CanResize="True"
         CanMinimize="False"
         CanMaximize="False"
         ShowInTaskbar="False"
@@ -158,6 +159,27 @@
             <Setter Property="Foreground" Value="#FF5BC17A" />
         </Style>
 
+        <Style Selector="Border.SummaryResizeGrip">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="SizeNorthSouth" />
+        </Style>
+
+        <Style Selector="Border.SummaryResizeCorner">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Height" Value="16" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Cursor" Value="BottomRightCorner" />
+        </Style>
+
+        <Style Selector="Border.SummaryResizeGrip:pointerover">
+            <Setter Property="Background" Value="#22E6C26E" />
+        </Style>
+
         <Style Selector="Button.SummaryCloseButton">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
@@ -179,7 +201,8 @@
         </Style>
     </Window.Styles>
 
-    <Border Classes="SummaryRoot">
+    <Border Classes="SummaryRoot"
+            PointerPressed="RootPointerPressed">
         <Grid RowDefinitions="Auto,*">
             <!-- Header: drag to move, close on the right -->
             <Border Grid.Row="0"
@@ -217,7 +240,7 @@
                           IsVisible="{Binding HasLocalPlayer}"
                           HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="18,14,18,18" Spacing="10">
+                <StackPanel Margin="18,14,18,22" Spacing="10">
                     <!-- Headline numbers -->
                     <ItemsControl ItemsSource="{Binding Tiles}">
                         <ItemsControl.ItemsPanel>
@@ -327,6 +350,14 @@
                     </Border>
                 </StackPanel>
             </ScrollViewer>
+
+            <!-- Drag the bottom edge to make the window taller or shorter -->
+            <Border Grid.Row="1"
+                    Classes="SummaryResizeGrip"
+                    PointerPressed="BottomEdgePointerPressed" />
+            <Border Grid.Row="1"
+                    Classes="SummaryResizeCorner"
+                    PointerPressed="CornerPointerPressed" />
         </Grid>
     </Border>
 </Window>
