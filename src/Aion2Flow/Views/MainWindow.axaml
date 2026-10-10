@@ -199,7 +199,7 @@
 
         <controls:AnimatedItemsView Grid.Row="2"
                                      Classes="MainHudForeground"
-                                     ItemSpacing="1"
+                                     ItemSpacing="2"
                                      ItemsSource="{Binding Combatants}"
                                      SelectedItem="{Binding SelectedCombatant, Mode=TwoWay}"
                                      MaxVisibleItems="{Binding SettingsFlyout.MaxVisibleCombatantRows}"
@@ -357,8 +357,8 @@
 
         <Border Grid.Row="4"
                 Classes="MainHudFooter MainHudForeground">
-            <Grid ColumnDefinitions="Auto,*,Auto"
-                  ColumnSpacing="6"
+            <Grid ColumnDefinitions="Auto,Auto,*,Auto"
+                  ColumnSpacing="4"
                   Margin="2,0">
                 <Button x:Name="SettingsButton"
                         Grid.Column="0"
@@ -386,8 +386,25 @@
                     </Button.Flyout>
                 </Button>
 
+                <Button x:Name="FightSummaryButton"
+                        Grid.Column="1"
+                        Classes="BottomBarButton FightSummaryButton"
+                        VerticalAlignment="Center"
+                        IsVisible="False"
+                        Click="FightSummaryButtonClick"
+                        ToolTip.Tip="{markups:Translate Summary_Open}">
+                    <Grid>
+                        <Path Classes="Glyph GlyphMd" Data="{StaticResource bar-chart}" />
+                        <Border x:Name="FightSummaryBadge"
+                                Classes="FightSummaryBadge"
+                                IsVisible="False"
+                                IsHitTestVisible="False" />
+                    </Grid>
+                </Button>
+
                 <StackPanel Orientation="Horizontal"
-                            Grid.Column="1"
+                            Grid.Column="2"
+                            Margin="2,0,0,0"
                             Spacing="6"
                             VerticalAlignment="Center"
                             ToolTip.Tip="{Binding Status}">
@@ -421,7 +438,7 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2"
+                <StackPanel Grid.Column="3"
                             Orientation="Horizontal"
                             Spacing="3"
                             VerticalAlignment="Center"

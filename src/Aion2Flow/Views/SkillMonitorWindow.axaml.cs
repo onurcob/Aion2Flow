@@ -29,9 +29,9 @@ public partial class SkillMonitorWindow : Window
         NativeOverlayWindowStyles.SetInputTransparent(this, !appFocused);
     }
 
-    public new SkillMonitorViewModel DataContext
+    public new ComboAssistantViewModel DataContext
     {
-        get => (SkillMonitorViewModel)base.DataContext!;
+        get => (ComboAssistantViewModel)base.DataContext!;
         set => base.DataContext = value;
     }
 
@@ -48,7 +48,7 @@ public partial class SkillMonitorWindow : Window
         RefreshLocalizedText();
     }
 
-    public SkillMonitorWindow(SkillMonitorViewModel viewModel) : this()
+    public SkillMonitorWindow(ComboAssistantViewModel viewModel) : this()
     {
         DataContext = viewModel;
     }
@@ -84,6 +84,7 @@ public partial class SkillMonitorWindow : Window
             _frameClockAttached = false;
         }
 
+        (base.DataContext as IDisposable)?.Dispose();
         base.OnClosed(e);
     }
 
@@ -91,7 +92,7 @@ public partial class SkillMonitorWindow : Window
 
     private void OnLanguageChanged(object? sender, EventArgs e) => RefreshLocalizedText();
 
-    private void RefreshLocalizedText() => MonitorInteractionTitle.Text = _localization["SkillMonitor_Title"];
+    private void RefreshLocalizedText() => MonitorInteractionTitle.Text = _localization["Combo_Title"];
 
     private void DragWindow(object? sender, PointerPressedEventArgs e)
     {
@@ -114,7 +115,7 @@ public partial class SkillMonitorWindow : Window
     private void RestoreGeometry()
     {
         var settings = _settingsService.Current;
-        Width = Math.Max(MinWidth, settings.SkillMonitorWidth);
+        Width = Math.Clamp(settings.SkillMonitorWidth, Math.Max(MinWidth, 240d), 560d);
 
         if (settings.SkillMonitorPosition is { } position)
             Position = new PixelPoint(position.X, position.Y);

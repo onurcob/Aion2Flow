@@ -77,7 +77,7 @@ public sealed class AppSettings
 
     public Point? SkillMonitorPosition { get; set; }
 
-    public int SkillMonitorWidth { get; set => field = Math.Clamp(value, 100, 4_096); } = 680;
+    public int SkillMonitorWidth { get; set => field = Math.Clamp(value, 100, 4_096); } = 360;
 
     public int UiScalePercent { get; set => field = Math.Clamp(value, 50, 200); } = 100;
 

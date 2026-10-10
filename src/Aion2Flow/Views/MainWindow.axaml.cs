@@ -35,6 +35,8 @@ public partial class MainWindow : Window
     private readonly UiScaleService _uiScale;
     private readonly LocalizationService _localization;
     private readonly SkillMonitorWindowController _skillMonitorWindowController;
+    private readonly FightSummaryService _fightSummaryService;
+    private FightSummaryWindow? _fightSummaryWindow;
     private readonly PlaybackWindowController _playbackWindowController = new();
     private readonly Control? _overlayRoot;
     private OverlayPinWindow? _pinWindow;
@@ -69,6 +71,7 @@ public partial class MainWindow : Window
         _uiScale = Ioc.Default.GetRequiredService<UiScaleService>();
         _localization = Ioc.Default.GetRequiredService<LocalizationService>();
         _skillMonitorWindowController = Ioc.Default.GetRequiredService<SkillMonitorWindowController>();
+        _fightSummaryService = Ioc.Default.GetRequiredService<FightSummaryService>();
         DataContext.InitializeAsync().ConfigureAwait(false);
         InitializeComponent();
         _overlayRoot = Content as Control;
@@ -77,6 +80,8 @@ public partial class MainWindow : Window
         RefreshHeaderVisibilityPreference();
         RefreshBackgroundOpacityPreference();
         RebuildEncounterHistoryMenuItems();
+        _fightSummaryService.LatestChanged += OnFightSummaryLatestChanged;
+        RefreshFightSummaryButton();
         _globalHotkeyService.Triggered += OnGlobalHotkeyTriggered;
         _overlayInteractionController.ModeChanged += OnOverlayInteractionModeChanged;
         PositionChanged += OnWindowPositionChanged;
@@ -187,6 +192,8 @@ public partial class MainWindow : Window
         _settingsService.Update(settings => settings.MainWindowPosition = new(Position.X, Position.Y));
         _playbackWindowController.Close();
         _skillMonitorWindowController.Close();
+        _fightSummaryService.LatestChanged -= OnFightSummaryLatestChanged;
+        _fightSummaryWindow?.Close();
         ClosePinWindow();
         base.OnClosing(e);
     }
@@ -709,6 +716,7 @@ public partial class MainWindow : Window
     private void OnEncounterHistoryCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         RebuildEncounterHistoryMenuItems();
+        RefreshFightSummaryButton();
     }
 
     private void RebuildEncounterHistoryMenuItems()
@@ -965,5 +973,46 @@ public partial class MainWindow : Window
         flyout = null!;
         flyoutView = null!;
         return false;
+    }
+
+    private void OnFightSummaryLatestChanged(object? sender, EventArgs e) => RefreshFightSummaryButton();
+
+    private void RefreshFightSummaryButton()
+    {
+        FightSummaryButton.IsVisible = _fightSummaryService.Latest is not null || DataContext.EncounterHistory.Count > 0;
+        FightSummaryBadge.IsVisible = _fightSummaryService.IsLatestUnseen;
+    }
+
+    private void FightSummaryButtonClick(object? sender, RoutedEventArgs e)
+    {
+        e.Handled = true;
+        var record = DataContext.IsViewingArchivedEncounter && DataContext.SelectedEncounterHistory is { } viewing
+            ? viewing.Record
+            : _fightSummaryService.Latest ?? DataContext.EncounterHistory.FirstOrDefault()?.Record;
+        if (record is null)
+            return;
+
+        if (ReferenceEquals(record, _fightSummaryService.Latest))
+            _fightSummaryService.MarkLatestSeen();
+
+        _fightSummaryWindow?.Close();
+        var viewModel = new FightSummaryViewModel(
+            record,
+            _fightSummaryService.CreateDisplayContext(record),
+            Ioc.Default.GetRequiredService<GameResourceService>(),
+            _localization,
+            Ioc.Default.GetRequiredService<UiFrameBatchService>());
+        var window = new FightSummaryWindow(viewModel)
+        {
+            Topmost = true
+        };
+        window.Closed += (_, _) =>
+        {
+            if (ReferenceEquals(_fightSummaryWindow, window))
+                _fightSummaryWindow = null;
+        };
+        _fightSummaryWindow = window;
+        window.Show(this);
+        window.Activate();
     }
 }

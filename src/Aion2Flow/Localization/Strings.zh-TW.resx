@@ -63,7 +63,7 @@
   <data name="Settings_PlayerFactionTint" xml:space="preserve"><value>陣營著色</value></data>
   <data name="Settings_PlayerFactionTint_On" xml:space="preserve"><value>開啟</value></data>
   <data name="Settings_PlayerFactionTint_Off" xml:space="preserve"><value>關閉</value></data>
-  <data name="Settings_SkillMonitor" xml:space="preserve"><value>技能監控</value></data>
+  <data name="Settings_SkillMonitor" xml:space="preserve"><value>連招助手</value></data>
   <data name="Settings_SkillMonitor_Enable" xml:space="preserve"><value>啟用</value></data>
   <data name="Settings_SkillMonitor_Configure" xml:space="preserve"><value>技能監控設定</value></data>
   <data name="Settings_SkillMonitor_On" xml:space="preserve"><value>開啟</value></data>
@@ -315,4 +315,31 @@
   <data name="Settings_HideUnnamedCombatants" xml:space="preserve">
     <value>隱藏無名稱列</value>
   </data>
+  <data name="Combo_Title" xml:space="preserve"><value>連招助手</value></data>
+  <data name="Combo_NextTitle" xml:space="preserve"><value>下一步</value></data>
+  <data name="Combo_RecentTitle" xml:space="preserve"><value>最近使用</value></data>
+  <data name="Combo_BestChainsTitle" xml:space="preserve"><value>最佳連招</value></data>
+  <data name="Combo_NoData" xml:space="preserve"><value>尚未學到連招。完成幾場戰鬥後，傷害最高的連招會顯示在這裡。</value></data>
+  <data name="Combo_NothingReady" xml:space="preserve"><value>建議的技能正在冷卻。</value></data>
+  <data name="Combo_Reason_Completes" xml:space="preserve"><value>完成連招：{0}（{1}/s）</value></data>
+  <data name="Combo_Reason_Follows" xml:space="preserve"><value>下一步：{0}（{1}/s）</value></data>
+  <data name="Combo_Reason_Opener" xml:space="preserve"><value>起手：{0}（{1}/s）</value></data>
+  <data name="Summary_Open" xml:space="preserve"><value>戰鬥摘要</value></data>
+  <data name="Summary_Title" xml:space="preserve"><value>戰鬥摘要</value></data>
+  <data name="Summary_Close" xml:space="preserve"><value>關閉</value></data>
+  <data name="Summary_Duration" xml:space="preserve"><value>時間</value></data>
+  <data name="Summary_Dps" xml:space="preserve"><value>DPS</value></data>
+  <data name="Summary_TotalDamage" xml:space="preserve"><value>總傷害</value></data>
+  <data name="Summary_Rank" xml:space="preserve"><value>排名</value></data>
+  <data name="Summary_Share" xml:space="preserve"><value>佔比</value></data>
+  <data name="Summary_CastsPerMinute" xml:space="preserve"><value>每分鐘技能</value></data>
+  <data name="Summary_ComboTitle" xml:space="preserve"><value>本場最佳連招</value></data>
+  <data name="Summary_SkillsTitle" xml:space="preserve"><value>技能統計</value></data>
+  <data name="Summary_FlowTitle" xml:space="preserve"><value>輸出節奏</value></data>
+  <data name="Summary_IdleFormat" xml:space="preserve"><value>超過 2 秒的空檔 {0} 次，共 {1}。最長：{2}。</value></data>
+  <data name="Summary_NoIdle" xml:space="preserve"><value>沒有超過 2 秒的空檔，節奏流暢。</value></data>
+  <data name="Summary_ChainVsAverageFormat" xml:space="preserve"><value>相較本場平均 {0}</value></data>
+  <data name="Summary_NoChains" xml:space="preserve"><value>技能使用次數不足以構成連招。</value></data>
+  <data name="Summary_NoLocalPlayer" xml:space="preserve"><value>此戰鬥中找不到你的角色。</value></data>
+  <data name="Summary_TimesFormat" xml:space="preserve"><value>×{0}</value></data>
 </root>

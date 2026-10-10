@@ -634,7 +634,8 @@ public partial class SettingsFlyoutView : UserControl
         _skillMonitorSettingsMenuItem.Classes.Add("SettingsRowItem");
         _skillMonitorSettingsMenuItem.Click += SkillMonitorSettingsMenuItemClicked;
         _skillMonitorMenuItem.Items.Add(_skillMonitorEnableMenuItem);
-        _skillMonitorMenuItem.Items.Add(_skillMonitorSettingsMenuItem);
+        // The combo helper replaced the buff/cooldown monitor; its skill picker no longer applies.
+        _skillMonitorSettingsMenuItem.IsVisible = false;
     }
 
     private void RefreshSkillMonitorMenuItems()

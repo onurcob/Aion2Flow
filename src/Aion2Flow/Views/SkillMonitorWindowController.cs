@@ -17,6 +17,7 @@ internal sealed class SkillMonitorWindowController
     private readonly UiScaleService _uiScale;
     private readonly SettingsFlyoutViewModel _settings;
     private readonly ProcessForegroundWatcher _foregroundWatcher;
+    private readonly ComboProfileStore _comboProfile;
     private SkillMonitorWindow? _window;
     private Window? _owner;
 
@@ -27,8 +28,10 @@ internal sealed class SkillMonitorWindowController
         SettingsService settingsService,
         UiScaleService uiScale,
         SettingsFlyoutViewModel settings,
-        ProcessForegroundWatcher foregroundWatcher)
+        ProcessForegroundWatcher foregroundWatcher,
+        ComboProfileStore comboProfile)
     {
+        _comboProfile = comboProfile;
         _captureService = captureService;
         _resources = resources;
         _localization = localization;
@@ -70,7 +73,7 @@ internal sealed class SkillMonitorWindowController
         }
 
         var window = new SkillMonitorWindow(
-            new SkillMonitorViewModel(_captureService, _resources, _localization, _settingsService));
+            new ComboAssistantViewModel(_captureService, _resources, _localization, _comboProfile));
         _window = window;
         window.Closed += WindowClosed;
         window.Activated += WindowFocusChanged;
@@ -133,10 +136,6 @@ internal sealed class SkillMonitorWindowController
         else if (e.PropertyName == nameof(SettingsFlyoutViewModel.IsAlwaysOnTop) && _window is { } window)
         {
             SynchronizeWindowState(window);
-        }
-        else if (e.PropertyName == nameof(SettingsFlyoutViewModel.EncounterTimeDisplayFormat) && _window is { } formatWindow)
-        {
-            formatWindow.DataContext.EncounterTimeDisplayFormat = _settings.EncounterTimeDisplayFormat;
         }
     }
 

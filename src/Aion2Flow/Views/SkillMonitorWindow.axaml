@@ -3,12 +3,12 @@
         xmlns:controls="clr-namespace:Cloris.Aion2Flow.Controls"
         xmlns:vm="clr-namespace:Cloris.Aion2Flow.ViewModels"
         x:Class="Cloris.Aion2Flow.Views.SkillMonitorWindow"
-        x:DataType="vm:SkillMonitorViewModel"
+        x:DataType="vm:ComboAssistantViewModel"
         WindowDecorations="None"
         TransparencyLevelHint="Transparent"
         Background="Transparent"
         SizeToContent="Height"
-        Width="680"
+        Width="360"
         MinWidth="100"
         CanResize="False"
         CanMinimize="False"
@@ -125,82 +125,204 @@
         <Style Selector="Border.MonitorWindowRoot.interactive TextBlock.MonitorInteractionTitle">
             <Setter Property="IsVisible" Value="True" />
         </Style>
+        <Style Selector="TextBlock.ComboSectionLabel">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.MainHudGold}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="2,0,0,4" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
+
+        <Style Selector="TextBlock.ComboStatusText">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="2,2,2,4" />
+        </Style>
+
+        <Style Selector="Border.ComboSuggestionFrame">
+            <Setter Property="Width" Value="44" />
+            <Setter Property="Height" Value="44" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.Border}" />
+            <Setter Property="ClipToBounds" Value="True" />
+        </Style>
+
+        <Style Selector="Border.ComboSuggestionFrame.primary">
+            <Setter Property="Width" Value="58" />
+            <Setter Property="Height" Value="58" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.MainHudGold}" />
+            <Setter Property="BoxShadow" Value="0 0 10 0 #80E6C26E" />
+        </Style>
+
+        <Style Selector="TextBlock.ComboSuggestionName">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="MaxWidth" Value="76" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="Margin" Value="0,3,0,0" />
+        </Style>
+
+        <Style Selector="TextBlock.ComboSuggestionName.primary">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.MainHudGold}" />
+        </Style>
+
+        <Style Selector="Border.ComboChip">
+            <Setter Property="Width" Value="26" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.Border}" />
+        </Style>
+
+        <Style Selector="Path.ComboArrow">
+            <Setter Property="Stroke" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Width" Value="9" />
+            <Setter Property="Height" Value="9" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="Margin" Value="2,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Border.ComboChainRow">
+            <Setter Property="Background" Value="#14FFFFFF" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="4,3" />
+            <Setter Property="Margin" Value="0,0,0,3" />
+        </Style>
+
+        <Style Selector="TextBlock.ComboChainDps">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="TextBlock.ComboChainCount">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+        </Style>
     </Window.Styles>
 
     <Border x:Name="MonitorRoot"
             Classes="MonitorWindowRoot"
-            Padding="4,4,10,4"
+            Padding="8,6,10,8"
             PointerPressed="DragWindow">
-        <Grid RowDefinitions="Auto,Auto">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
             <TextBlock x:Name="MonitorInteractionTitle"
                        Grid.Row="0"
                        Classes="MonitorInteractionTitle" />
 
-            <ItemsControl Grid.Row="1"
-                          ItemsSource="{Binding SkillRows}"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Top">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:SkillMonitorSkillSlot">
-                        <Grid Width="76"
-                              Height="82"
-                              Margin="0,0,6,6"
-                              ToolTip.Tip="{Binding ToolTipText}">
-                            <Grid Width="60"
-                                  Height="60"
-                                  Margin="8">
-                                <Image Source="/Assets/Images/Hud/Cooldown/QuickSlotSkill_EmptyFrame.png"
-                                       Stretch="Fill"
-                                       IsHitTestVisible="False" />
-                                <Border Margin="3"
-                                        CornerRadius="2"
-                                        ClipToBounds="True">
+            <StackPanel Grid.Row="1" Spacing="0" Margin="0,0,0,6">
+                <TextBlock Classes="ComboSectionLabel"
+                           Text="{Binding SuggestionsTitle}" />
+                <TextBlock Classes="ComboStatusText"
+                           Text="{Binding StatusText}"
+                           IsVisible="{Binding HasStatus}" />
+                <ItemsControl ItemsSource="{Binding Suggestions}"
+                              IsVisible="{Binding HasSuggestions}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ComboSuggestionItem">
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Bottom"
+                                        ToolTip.Tip="{Binding Reason}">
+                                <Border Classes="ComboSuggestionFrame"
+                                        Classes.primary="{Binding IsPrimary}"
+                                        HorizontalAlignment="Center">
                                     <controls:SkillIcon Classes="MonitorSkillIcon"
                                                         AssetName="{Binding IconAssetName}" />
                                 </Border>
-                                <controls:CooldownSkillVisual CooldownProgress="{Binding CooldownProgressValue}"
-                                                              CompletionStartedUtcMilliseconds="{Binding CompletionStartedUtcMilliseconds}"
-                                                              IsHitTestVisible="False" />
-                                <TextBlock Classes="MonitorBuffText"
-                                           Margin="4,3,4,0"
-                                           Text="{Binding BuffRemainingText}"
-                                           IsVisible="{Binding HasBuff}"
-                                           IsHitTestVisible="False" />
-                                <Grid ColumnDefinitions="Auto,*"
-                                      VerticalAlignment="Bottom"
-                                      ZIndex="12"
-                                      IsHitTestVisible="False">
-                                    <Border Classes="MonitorChargeBadge"
-                                            Margin="0"
-                                            IsVisible="{Binding HasAvailableCount}">
-                                        <TextBlock Classes="MonitorChargeText"
-                                                   Text="{Binding AvailableCountText}" />
-                                    </Border>
+                                <TextBlock Classes="ComboSuggestionName"
+                                           Classes.primary="{Binding IsPrimary}"
+                                           Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Margin="0,0,0,6"
+                        IsVisible="{Binding HasRecentCasts}">
+                <TextBlock Classes="ComboSectionLabel"
+                           Text="{Binding RecentTitle}" />
+                <ItemsControl ItemsSource="{Binding RecentCasts}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="0" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ComboSkillChip">
+                            <StackPanel Orientation="Horizontal" ToolTip.Tip="{Binding Name}">
+                                <Path Classes="ComboArrow" Data="{StaticResource chevron-right}" />
+                                <Border Classes="ComboChip">
+                                    <controls:SkillIcon Classes="MonitorSkillIcon"
+                                                        AssetName="{Binding IconAssetName}" />
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        IsVisible="{Binding HasBestChains}">
+                <TextBlock Classes="ComboSectionLabel"
+                           Text="{Binding BestChainsTitle}" />
+                <ItemsControl ItemsSource="{Binding BestChains}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ComboChainItem">
+                            <Border Classes="ComboChainRow"
+                                    ToolTip.Tip="{Binding ToolTipText}">
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+                                    <ItemsControl Grid.Column="0"
+                                                  ItemsSource="{Binding Skills}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:ComboSkillChip">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Classes="ComboArrow" Data="{StaticResource chevron-right}" />
+                                                    <Border Classes="ComboChip">
+                                                        <controls:SkillIcon Classes="MonitorSkillIcon"
+                                                                            AssetName="{Binding IconAssetName}" />
+                                                    </Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                     <TextBlock Grid.Column="1"
-                                               Classes="MonitorCooldownText"
-                                               Margin="3,0,3,3"
-                                               HorizontalAlignment="Stretch"
-                                               TextAlignment="Right"
-                                               Text="{Binding CooldownRemainingText}"
-                                               IsVisible="{Binding HasCooldown}" />
+                                               Classes="ComboChainDps"
+                                               Text="{Binding DamagePerSecondText}" />
+                                    <TextBlock Grid.Column="2"
+                                               Classes="ComboChainCount"
+                                               Text="{Binding CountText}" />
                                 </Grid>
-                                <controls:PerimeterProgressBar Classes="MonitorBuffPerimeter"
-                                                               Value="{Binding BuffProgressValue}"
-                                                               IsVisible="{Binding HasBuff}"
-                                                               IsHitTestVisible="False" />
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
 
             <Border Classes="MonitorWidthResizeGrip"
-                    Grid.RowSpan="2"
+                    Grid.RowSpan="5"
                     PointerPressed="ResizeWindow"
                     IsHitTestVisible="True" />
         </Grid>

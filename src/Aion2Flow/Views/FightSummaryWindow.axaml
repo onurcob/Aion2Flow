@@ -1,0 +1,332 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Cloris.Aion2Flow.Controls"
+        xmlns:views="clr-namespace:Cloris.Aion2Flow.Views"
+        xmlns:vm="clr-namespace:Cloris.Aion2Flow.ViewModels"
+        x:Class="Cloris.Aion2Flow.Views.FightSummaryWindow"
+        x:DataType="vm:FightSummaryViewModel"
+        WindowDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        Width="940"
+        Height="760"
+        MinWidth="640"
+        MinHeight="480"
+        CanMinimize="False"
+        CanMaximize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}"
+        Icon="/Assets/Images/Aion2Flow.png">
+
+    <Window.Styles>
+        <StyleInclude Source="avares://Aion2Flow/Styles/OverlayTheme.axaml" />
+
+        <Style Selector="Border.SummaryRoot">
+            <Setter Property="Background" Value="{StaticResource OverlayBrush.DetailBackdrop}" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.DetailHudLine}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="ClipToBounds" Value="True" />
+        </Style>
+
+        <Style Selector="Border.SummaryHeader">
+            <Setter Property="Background" Value="{StaticResource OverlayBrush.DetailSurfaceStrong}" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.DetailSeparator}" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="18,12,10,12" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryTitle">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.MainHudGold}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryScene">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryMuted">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style Selector="Border.SummaryTile">
+            <Setter Property="Background" Value="{StaticResource OverlayBrush.DetailHudPanel}" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.DetailHudLineSoft}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="0,0,8,8" />
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+
+        <Style Selector="Border.SummaryTile.highlight">
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.MainHudGold}" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryTileLabel">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="FontSize" Value="11" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryTileValue">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,2,0,0" />
+        </Style>
+
+        <Style Selector="Border.SummaryTile.highlight TextBlock.SummaryTileValue">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.MainHudGold}" />
+        </Style>
+
+        <Style Selector="TextBlock.SummarySectionTitle">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.MainHudGold}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,4,0,8" />
+        </Style>
+
+        <Style Selector="Border.SummaryPanel">
+            <Setter Property="Background" Value="{StaticResource OverlayBrush.DetailHudPanelSoft}" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.DetailHudLineSoft}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12,10" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryFlowText">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style Selector="Border.SummaryFlowDot">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Background" Value="#FF5BC17A" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Border.SummaryFlowDot.warning">
+            <Setter Property="Background" Value="#FFE0A34A" />
+        </Style>
+
+        <Style Selector="Border.SummaryChip">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource OverlayBrush.Border}" />
+        </Style>
+
+        <Style Selector="controls|SkillIcon.SummarySkillIcon">
+            <Setter Property="Stretch" Value="UniformToFill" />
+        </Style>
+
+        <Style Selector="Path.SummaryArrow">
+            <Setter Property="Stroke" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="Margin" Value="4,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryChainDps">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryChainVersus">
+            <Setter Property="Foreground" Value="{StaticResource OverlayBrush.TextMuted}" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <Style Selector="TextBlock.SummaryChainVersus.above">
+            <Setter Property="Foreground" Value="#FF5BC17A" />
+        </Style>
+
+        <Style Selector="Button.SummaryCloseButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
+        <Style Selector="Button.SummaryCloseButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource OverlayBrush.DetailHudPanelHover}" />
+        </Style>
+
+        <Style Selector="Path.SummaryCloseGlyph">
+            <Setter Property="Stroke" Value="{StaticResource OverlayBrush.Text}" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Width" Value="14" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Stretch" Value="Uniform" />
+        </Style>
+    </Window.Styles>
+
+    <Border Classes="SummaryRoot">
+        <Grid RowDefinitions="Auto,*">
+            <!-- Header: drag to move, close on the right -->
+            <Border Grid.Row="0"
+                    Classes="SummaryHeader"
+                    PointerPressed="HeaderPointerPressed">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Classes="SummaryTitle" Text="{Binding Title}" />
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Classes="SummaryScene" Text="{Binding SceneName}" />
+                            <TextBlock Classes="SummaryMuted"
+                                       Text="{Binding TimeText}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0,0,0,3" />
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Grid.Column="1"
+                            Classes="SummaryCloseButton"
+                            Click="CloseClicked"
+                            ToolTip.Tip="{Binding CloseText}">
+                        <Path Classes="SummaryCloseGlyph" Data="{StaticResource x}" />
+                    </Button>
+                </Grid>
+            </Border>
+
+            <TextBlock Grid.Row="1"
+                       Classes="SummaryMuted"
+                       Text="{Binding EmptyText}"
+                       IsVisible="{Binding !HasLocalPlayer}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+
+            <ScrollViewer Grid.Row="1"
+                          Classes="AppScrollViewer"
+                          IsVisible="{Binding HasLocalPlayer}"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="18,14,18,18" Spacing="10">
+                    <!-- Headline numbers -->
+                    <ItemsControl ItemsSource="{Binding Tiles}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:FightSummaryTile">
+                                <Border Classes="SummaryTile"
+                                        Classes.highlight="{Binding IsHighlight}">
+                                    <StackPanel>
+                                        <TextBlock Classes="SummaryTileLabel" Text="{Binding Label}" />
+                                        <TextBlock Classes="SummaryTileValue" Text="{Binding Value}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <!-- Rotation flow -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Classes="SummarySectionTitle" Text="{Binding FlowTitle}" />
+                            <Border Classes="SummaryPanel">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                    <Border Grid.Column="0"
+                                            Classes="SummaryFlowDot"
+                                            Classes.warning="{Binding HasIdleWarning}" />
+                                    <TextBlock Grid.Column="1"
+                                               Classes="SummaryFlowText"
+                                               Text="{Binding FlowText}" />
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Best chains of this fight -->
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Classes="SummarySectionTitle" Text="{Binding ComboTitle}" />
+                            <Border Classes="SummaryPanel">
+                                <Grid>
+                                    <TextBlock Classes="SummaryMuted"
+                                               Text="{Binding NoChainsText}"
+                                               IsVisible="{Binding HasNoChains}" />
+                                    <ItemsControl ItemsSource="{Binding Chains}"
+                                                  IsVisible="{Binding HasChains}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Spacing="8" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:FightSummaryChainItem">
+                                                <Grid ColumnDefinitions="*,Auto"
+                                                      ToolTip.Tip="{Binding ToolTipText}">
+                                                    <ItemsControl Grid.Column="0"
+                                                                  ItemsSource="{Binding Skills}"
+                                                                  VerticalAlignment="Center">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate x:DataType="vm:ComboSkillChip">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Path Classes="SummaryArrow" Data="{StaticResource chevron-right}" />
+                                                                    <Border Classes="SummaryChip"
+                                                                            ToolTip.Tip="{Binding Name}">
+                                                                        <controls:SkillIcon Classes="SummarySkillIcon"
+                                                                                            AssetName="{Binding IconAssetName}" />
+                                                                    </Border>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <StackPanel Grid.Column="1"
+                                                                VerticalAlignment="Center">
+                                                        <StackPanel Orientation="Horizontal"
+                                                                    Spacing="6"
+                                                                    HorizontalAlignment="Right">
+                                                            <TextBlock Classes="SummaryChainDps" Text="{Binding DamagePerSecondText}" />
+                                                            <TextBlock Classes="SummaryMuted"
+                                                                       Text="{Binding CountText}"
+                                                                       VerticalAlignment="Center" />
+                                                        </StackPanel>
+                                                        <TextBlock Classes="SummaryChainVersus"
+                                                                   Classes.above="{Binding IsAboveAverage}"
+                                                                   Text="{Binding VersusAverageText}" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Per-skill table, reusing the existing detail view -->
+                    <TextBlock Classes="SummarySectionTitle" Text="{Binding SkillsTitle}" />
+                    <Border Classes="SummaryPanel"
+                            Padding="0"
+                            controls:DisplayContextProvider.DisplayContext="{Binding Details.DisplayContext}">
+                        <views:CombatDirectionDetailView DataContext="{Binding Details.OutgoingDetail}"
+                                                         EnableSkillSelection="False" />
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>

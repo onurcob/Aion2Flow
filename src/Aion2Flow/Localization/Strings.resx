@@ -63,7 +63,7 @@
   <data name="Settings_PlayerFactionTint" xml:space="preserve"><value>Faction tint</value></data>
   <data name="Settings_PlayerFactionTint_On" xml:space="preserve"><value>On</value></data>
   <data name="Settings_PlayerFactionTint_Off" xml:space="preserve"><value>Off</value></data>
-  <data name="Settings_SkillMonitor" xml:space="preserve"><value>Skill monitor</value></data>
+  <data name="Settings_SkillMonitor" xml:space="preserve"><value>Combo helper</value></data>
   <data name="Settings_SkillMonitor_Enable" xml:space="preserve"><value>Enable</value></data>
   <data name="Settings_SkillMonitor_Configure" xml:space="preserve"><value>Skill monitor settings</value></data>
   <data name="Settings_SkillMonitor_On" xml:space="preserve"><value>On</value></data>
@@ -316,4 +316,31 @@
   <data name="Settings_HideUnnamedCombatants" xml:space="preserve">
     <value>Hide unnamed rows</value>
   </data>
+  <data name="Combo_Title" xml:space="preserve"><value>Combo helper</value></data>
+  <data name="Combo_NextTitle" xml:space="preserve"><value>NEXT</value></data>
+  <data name="Combo_RecentTitle" xml:space="preserve"><value>RECENT</value></data>
+  <data name="Combo_BestChainsTitle" xml:space="preserve"><value>YOUR BEST CHAINS</value></data>
+  <data name="Combo_NoData" xml:space="preserve"><value>No combos learned yet. Finish a few fights and your highest-damage chains will show up here.</value></data>
+  <data name="Combo_NothingReady" xml:space="preserve"><value>Suggested skills are on cooldown.</value></data>
+  <data name="Combo_Reason_Completes" xml:space="preserve"><value>Completes {0} ({1}/s)</value></data>
+  <data name="Combo_Reason_Follows" xml:space="preserve"><value>Next step of {0} ({1}/s)</value></data>
+  <data name="Combo_Reason_Opener" xml:space="preserve"><value>Opens {0} ({1}/s)</value></data>
+  <data name="Summary_Open" xml:space="preserve"><value>Fight summary</value></data>
+  <data name="Summary_Title" xml:space="preserve"><value>Fight summary</value></data>
+  <data name="Summary_Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Summary_Duration" xml:space="preserve"><value>Duration</value></data>
+  <data name="Summary_Dps" xml:space="preserve"><value>DPS</value></data>
+  <data name="Summary_TotalDamage" xml:space="preserve"><value>Total damage</value></data>
+  <data name="Summary_Rank" xml:space="preserve"><value>Rank</value></data>
+  <data name="Summary_Share" xml:space="preserve"><value>Share</value></data>
+  <data name="Summary_CastsPerMinute" xml:space="preserve"><value>Skills / min</value></data>
+  <data name="Summary_ComboTitle" xml:space="preserve"><value>Best chains this fight</value></data>
+  <data name="Summary_SkillsTitle" xml:space="preserve"><value>Skill breakdown</value></data>
+  <data name="Summary_FlowTitle" xml:space="preserve"><value>Rotation flow</value></data>
+  <data name="Summary_IdleFormat" xml:space="preserve"><value>{0} gaps longer than 2 s, {1} in total. Longest: {2}.</value></data>
+  <data name="Summary_NoIdle" xml:space="preserve"><value>No gaps longer than 2 s. Smooth rotation.</value></data>
+  <data name="Summary_ChainVsAverageFormat" xml:space="preserve"><value>{0} vs. your fight average</value></data>
+  <data name="Summary_NoChains" xml:space="preserve"><value>Not enough skill uses to form chains.</value></data>
+  <data name="Summary_NoLocalPlayer" xml:space="preserve"><value>Your character wasn't found in this fight.</value></data>
+  <data name="Summary_TimesFormat" xml:space="preserve"><value>×{0}</value></data>
 </root>

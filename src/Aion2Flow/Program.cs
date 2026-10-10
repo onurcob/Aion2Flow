@@ -111,6 +111,11 @@ internal static class Program
         services.AddSingleton<WinDivertCaptureService>();
         services.AddSingleton<GlobalHotkeyService>();
         services.AddSingleton<OverlayInteractionController>();
+        services.AddSingleton(_ => new ComboProfileStore());
+        services.AddSingleton(provider => new FightSummaryService(
+            provider.GetRequiredService<EncounterArchiveService>(),
+            provider.GetRequiredService<ComboProfileStore>(),
+            provider.GetRequiredService<GameResourceService>()));
         services.AddSingleton<SkillMonitorWindowController>();
         services.AddSingleton<SettingsFlyoutViewModel>();
         services.AddSingleton<MainViewModel>();

@@ -156,7 +156,7 @@
     <value>Kapalı</value>
   </data>
   <data name="Settings_SkillMonitor" xml:space="preserve">
-    <value>Skill monitörü</value>
+    <value>Combo yardımcısı</value>
   </data>
   <data name="Settings_SkillMonitor_Enable" xml:space="preserve">
     <value>Etkinleştir</value>
@@ -797,4 +797,31 @@
   <data name="Settings_HideUnnamedCombatants" xml:space="preserve">
     <value>İsimsiz satırları gizle</value>
   </data>
+  <data name="Combo_Title" xml:space="preserve"><value>Combo yardımcısı</value></data>
+  <data name="Combo_NextTitle" xml:space="preserve"><value>SIRADAKİ</value></data>
+  <data name="Combo_RecentTitle" xml:space="preserve"><value>SON KULLANILAN</value></data>
+  <data name="Combo_BestChainsTitle" xml:space="preserve"><value>EN İYİ ZİNCİRLERİN</value></data>
+  <data name="Combo_NoData" xml:space="preserve"><value>Henüz öğrenilmiş combo yok. Birkaç dövüş bitirince en çok hasar veren zincirlerin burada çıkar.</value></data>
+  <data name="Combo_NothingReady" xml:space="preserve"><value>Önerilen skiller şu an beklemede.</value></data>
+  <data name="Combo_Reason_Completes" xml:space="preserve"><value>Zinciri tamamlar: {0} ({1}/s)</value></data>
+  <data name="Combo_Reason_Follows" xml:space="preserve"><value>Sıradaki adım: {0} ({1}/s)</value></data>
+  <data name="Combo_Reason_Opener" xml:space="preserve"><value>Açılış: {0} ({1}/s)</value></data>
+  <data name="Summary_Open" xml:space="preserve"><value>Dövüş özeti</value></data>
+  <data name="Summary_Title" xml:space="preserve"><value>Dövüş özeti</value></data>
+  <data name="Summary_Close" xml:space="preserve"><value>Kapat</value></data>
+  <data name="Summary_Duration" xml:space="preserve"><value>Süre</value></data>
+  <data name="Summary_Dps" xml:space="preserve"><value>DPS</value></data>
+  <data name="Summary_TotalDamage" xml:space="preserve"><value>Toplam hasar</value></data>
+  <data name="Summary_Rank" xml:space="preserve"><value>Sıra</value></data>
+  <data name="Summary_Share" xml:space="preserve"><value>Pay</value></data>
+  <data name="Summary_CastsPerMinute" xml:space="preserve"><value>Skill / dk</value></data>
+  <data name="Summary_ComboTitle" xml:space="preserve"><value>Bu dövüşteki en iyi zincirler</value></data>
+  <data name="Summary_SkillsTitle" xml:space="preserve"><value>Skill istatistikleri</value></data>
+  <data name="Summary_FlowTitle" xml:space="preserve"><value>Rotasyon akışı</value></data>
+  <data name="Summary_IdleFormat" xml:space="preserve"><value>2 sn'den uzun {0} boşluk, toplam {1}. En uzunu: {2}.</value></data>
+  <data name="Summary_NoIdle" xml:space="preserve"><value>2 sn'den uzun boşluk yok, akış temiz.</value></data>
+  <data name="Summary_ChainVsAverageFormat" xml:space="preserve"><value>dövüş ortalamana göre {0}</value></data>
+  <data name="Summary_NoChains" xml:space="preserve"><value>Zincir oluşturacak kadar skill kullanımı yok.</value></data>
+  <data name="Summary_NoLocalPlayer" xml:space="preserve"><value>Bu dövüşte senin karakterin bulunamadı.</value></data>
+  <data name="Summary_TimesFormat" xml:space="preserve"><value>×{0}</value></data>
 </root>

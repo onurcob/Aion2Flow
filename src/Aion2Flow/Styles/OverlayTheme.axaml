@@ -62,6 +62,7 @@
 
     <Style Selector="Border.MainHudHeaderBackdrop">
         <Setter Property="Background" Value="{StaticResource OverlayBrush.MainHudBackdrop}" />
+        <Setter Property="CornerRadius" Value="6,6,0,0" />
         <Setter Property="Opacity" Value="1" />
         <Setter Property="Transitions">
             <Transitions>
@@ -73,6 +74,7 @@
     <Style Selector="Border.MainHudContentBackdrop">
         <Setter Property="Background" Value="{StaticResource OverlayBrush.MainHudContentBackdrop}" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="0,0,6,6" />
         <Setter Property="Opacity" Value="1" />
         <Setter Property="Transitions">
             <Transitions>
@@ -398,6 +400,20 @@
 
     <Style Selector="Button.BottomBarButton:disabled Path.Glyph">
         <Setter Property="Stroke" Value="{StaticResource OverlayBrush.TextSubtle}" />
+    </Style>
+
+    <Style Selector="Border.FightSummaryBadge">
+        <Setter Property="Width" Value="7" />
+        <Setter Property="Height" Value="7" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Background" Value="{StaticResource OverlayBrush.MainHudGold}" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,-2,-3,0" />
+    </Style>
+
+    <Style Selector="Button.FightSummaryButton">
+        <Setter Property="Opacity" Value="0.9" />
     </Style>
 
     <Style Selector="Button.BottomBarButton:pointerover">
@@ -770,7 +786,9 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Margin" Value="3,0" />
+        <Setter Property="Cursor" Value="Hand" />
 
         <Setter Property="ClipToBounds" Value="True" />
     </Style>
@@ -783,8 +801,8 @@
 
     <Style Selector="controls|SlantedProgressBar.CombatantRowBar">
         <Setter Property="SlantWidth" Value="7" />
-        <Setter Property="Height" Value="4" />
-        <Setter Property="Margin" Value="40,0,12,4" />
+        <Setter Property="Height" Value="3" />
+        <Setter Property="Margin" Value="40,0,8,3" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
     </Style>
@@ -834,7 +852,7 @@
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Right" />
     </Style>
 
     <Style Selector="controls|NumericBlock.OverlayRowMetricStrong">
@@ -843,7 +861,7 @@
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Right" />
     </Style>
 
     <Style Selector="controls|NumericBlock.CombatantBossShareValue">
